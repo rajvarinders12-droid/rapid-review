@@ -114,6 +114,21 @@ document.addEventListener('DOMContentLoaded', () => {
         mx = -9999;
         my = -9999;
       });
+
+      // Touch interaction for mobile responsive
+      const handleTouch = (e) => {
+        if (e.touches && e.touches.length > 0) {
+          const rect = canvas.getBoundingClientRect();
+          mx = e.touches[0].clientX - rect.left;
+          my = e.touches[0].clientY - rect.top;
+        }
+      };
+      heroSection.addEventListener('touchstart', handleTouch, { passive: true });
+      heroSection.addEventListener('touchmove', handleTouch, { passive: true });
+      heroSection.addEventListener('touchend', () => {
+        mx = -9999;
+        my = -9999;
+      });
     }
 
     const canvasObserver = new IntersectionObserver((entries) => {
@@ -133,6 +148,10 @@ document.addEventListener('DOMContentLoaded', () => {
       time += 0.012;
       ctx.clearRect(0, 0, width, height);
 
+      // Gentle ambient sweep on mobile when not touching
+      const sweepX = isMobile && mx === -9999 ? (Math.sin(time * 0.8) * 0.35 + 0.5) * width : -9999;
+      const sweepY = isMobile && my === -9999 ? (Math.cos(time * 0.6) * 0.3 + 0.45) * height : -9999;
+
       for (let y = gap / 2; y < height; y += gap) {
         for (let x = gap / 2; x < width; x += gap) {
           const wave = Math.sin(x * 0.007 + time * 1.5) * Math.cos(y * 0.009 - time) * 0.5 +
@@ -143,12 +162,18 @@ document.addEventListener('DOMContentLoaded', () => {
           const dist = Math.hypot(dx, dy);
           const mouseEffect = Math.max(0, 1 - dist / 180);
 
-          const radius = Math.max(0.6, (wave * 0.5 + 0.5) * 2.2 + mouseEffect * 3.4);
-          const alpha = Math.min(0.85, 0.12 + (wave * 0.5 + 0.5) * 0.25 + mouseEffect * 0.55);
+          const dxSweep = x - sweepX;
+          const dySweep = y - sweepY;
+          const distSweep = Math.hypot(dxSweep, dySweep);
+          const sweepEffect = isMobile && sweepX !== -9999 ? Math.max(0, 1 - distSweep / 130) * 0.45 : 0;
+
+          const totalEffect = Math.max(mouseEffect, sweepEffect);
+          const radius = Math.max(0.6, (wave * 0.5 + 0.5) * 2.2 + totalEffect * 3.4);
+          const alpha = Math.min(0.85, 0.12 + (wave * 0.5 + 0.5) * 0.25 + totalEffect * 0.55);
 
           ctx.beginPath();
           ctx.arc(x, y, radius, 0, Math.PI * 2);
-          if (mouseEffect > 0.1) {
+          if (totalEffect > 0.1) {
             ctx.fillStyle = `rgba(56, 189, 248, ${alpha})`;
           } else {
             ctx.fillStyle = `rgba(125, 151, 168, ${alpha})`;
@@ -166,25 +191,28 @@ document.addEventListener('DOMContentLoaded', () => {
      4. NAVBAR SCROLL & MOBILE MENU
      ============================================================ */
   const navbar = document.getElementById('navbar');
-  window.addEventListener('scroll', () => {
-    if (navbar) {
-      if (window.scrollY > 30) {
-        navbar.classList.add('scrolled');
-      } else {
-        navbar.classList.remove('scrolled');
-      }
-    }
-  }, { passive: true });
-
   const navToggle = document.getElementById('navToggle');
   const mobileDrawer = document.getElementById('mobileDrawer');
   const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+
+  const checkNavbarScroll = () => {
+    if (!navbar) return;
+    if (window.scrollY > 25) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+  };
+
+  checkNavbarScroll();
+  window.addEventListener('scroll', checkNavbarScroll, { passive: true });
 
   function toggleMobileMenu(forceState) {
     if (!mobileDrawer || !navToggle) return;
     const shouldOpen = forceState !== undefined ? forceState : !mobileDrawer.classList.contains('open');
     mobileDrawer.classList.toggle('open', shouldOpen);
     navToggle.classList.toggle('open', shouldOpen);
+    if (navbar) navbar.classList.toggle('drawer-open', shouldOpen);
     document.body.style.overflow = shouldOpen ? 'hidden' : '';
   }
 
