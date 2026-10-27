@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Primary SEO -->
+  <title>Rapid Review — Real 5-Star Reviews for Amazon & Google</title>
+  <meta name="description" content="Rapid Review is an award-winning reputation management brand. We help businesses get real 5-star reviews on Amazon and Google, and stop bad reviews quietly.">
+  <meta name="keywords" content="Amazon reviews, Google review card, reputation management, remove bad reviews, Rapid Review">
+
+  <!-- Fonts: Archivo & Space Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Dynamic Magnetic Custom Cursor (Hidden on touch/mobile) -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-follower" id="cursorFollower"></div>
+
+  <!-- SVG Global Symbol Definitions -->
+  <svg width="0" height="0" style="position:absolute; display:none;">
+    <defs>
+      <!-- Star Symbol -->
+      <symbol id="star" viewBox="0 0 24 24">
+        <path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7L12 17.3 5.8 20.9l1.6-7L2 9.2l7.1-.6z"/>
+      </symbol>
+      <!-- Trophy Symbol -->
+      <symbol id="trophy" viewBox="0 0 24 24">
+        <path d="M6 9H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h2m12 6h2a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-2M6 3h12a3 3 0 0 1 3 3v4a6 6 0 0 1-5 5.9V19h2a1 1 0 0 1 1 1v1H5v-1a1 1 0 0 1 1-1h2v-3.1A6 6 0 0 1 3 10V6a3 3 0 0 1 3-3z"/>
+      </symbol>
+      <!-- Arrow -->
+      <symbol id="arrow" viewBox="0 0 24 24">
+        <line x1="5" y1="12" x2="19" y2="12" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+        <polyline points="12 5 19 12 12 19" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+      </symbol>
+      <!-- Checkmark -->
+      <symbol id="check" viewBox="0 0 24 24">
+        <polyline points="20 6 9 17 4 12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <!-- Clean Floating Navbar -->
+  <nav class="nav-bar" id="navbar">
+    <a href="#hero" class="nav-logo hoverable" data-label="Top">
+      <div class="nav-logo-badge">RR</div>
+      RAPID REVIEW
+    </a>
+
+    <div class="nav-links">
+      <a href="#award" class="nav-link hoverable" data-label="Award">Award</a>
+      <a href="#services" class="nav-link hoverable" data-label="Services">What We Do</a>
+      <a href="#how" class="nav-link hoverable" data-label="Demo">How It Works</a>
+      <a href="#cases" class="nav-link hoverable" data-label="Results">Results</a>
+      <a href="#pricing" class="nav-link hoverable" data-label="Pricing">Pricing</a>
+      <a href="#faq" class="nav-link hoverable" data-label="FAQ">FAQ</a>
+    </div>
+
+    <div class="nav-right">
+      <a href="#contact" class="cta-btn hoverable" data-label="Talk">
+        Get Started
+      </a>
+      <button class="nav-toggle hoverable" id="navToggle" aria-label="Open Menu" data-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu Drawer -->
+  <div class="mobile-drawer" id="mobileDrawer">
+    <div class="mobile-nav-links">
+      <a href="#award" class="mobile-nav-link">Award Winner</a>
+      <a href="#services" class="mobile-nav-link">What We Do</a>
+      <a href="#how" class="mobile-nav-link">How It Works</a>
+      <a href="#cases" class="mobile-nav-link">Results</a>
+      <a href="#pricing" class="mobile-nav-link">Pricing</a>
+      <a href="#faq" class="mobile-nav-link">FAQ</a>
+      <a href="#contact" class="mobile-nav-link">Contact</a>
+    </div>
+    <div class="mobile-drawer-foot">
+      <a href="https://wa.me/918590954151?text=Hi%20Rapid%20Review,%20I'd%20like%20to%20get%20more%20reviews." class="cta-btn cta-btn-cyan" style="justify-content:center; width:100%;">
+        Chat on WhatsApp
+      </a>
+    </div>
+  </div>
+
+  <!-- HERO SECTION (Balanced, Rich, 100vh with 3 stats on main page) -->
+  <header class="hero" id="hero">
+    <canvas id="halftone"></canvas>
+    <div class="hero-glow"></div>
+
+    <div class="hero-content rv">
+      <div class="hero-pill">
+        <span class="hero-live-beacon"></span>
+        Awarded India’s Best Reputation Brand · IDA 2024
+      </div>
+
+      <h1 class="hero-title" aria-label="Rapid Review">
+        <span class="ch">R</span><span class="ch">A</span><span class="ch">P</span><span class="ch">I</span><span class="ch">D</span>
+        &nbsp;
+        <span class="ch">R</span><span class="ch">E</span><span class="ch">V</span><span class="ch">I</span><span class="ch">E</span><span class="ch">W</span>
+      </h1>
+
+      <p class="hero-sub">
+        Get real <strong>5-star reviews</strong> on Amazon and Google. Stop bad reviews before they hurt your sales.
+      </p>
+
+      <!-- Trust Reassurance Highlights -->
+      <div class="hero-trust-bar">
+        <span class="hero-trust-item"><svg viewBox="0 0 24 24"><use href="#check"/></svg> Verified Real Buyers</span>
+        <span>•</span>
+        <span class="hero-trust-item"><svg viewBox="0 0 24 24"><use href="#check"/></svg> Empty Box Logistics</span>
+        <span>•</span>
+        <span class="hero-trust-item"><svg viewBox="0 0 24 24"><use href="#check"/></svg> 100% Policy Safe</span>
+      </div>
+
+      <div class="hero-actions">
+        <a href="#contact" class="cta-btn cta-btn-cyan hoverable" data-label="Start">
+          Get Started
+          <svg width="12" height="12"><use href="#arrow"/></svg>
+        </a>
+        <a href="#how" class="cta-btn cta-btn-outline hoverable" data-label="Demo">
+          See How It Works
+        </a>
+      </div>
+
+      <!-- The 3 Key Stats (Reduced from 140,000+ & Showcased on Main Page) -->
+      <div class="hero-stats-capsule">
+        <div class="hero-stat-item">
+          <div class="hero-stat-icon-wrap">
+            <svg width="14" height="14" fill="#f59e0b"><use href="#star"/></svg>
+          </div>
+          <div>
+            <div class="hero-stat-val">4.9 ★</div>
+            <div class="hero-stat-lbl">Client Rating</div>
+          </div>
+        </div>
+
+        <div class="hero-stat-divider"></div>
+
+        <div class="hero-stat-item">
+          <div class="hero-stat-icon-wrap">
+            <svg width="14" height="14" stroke="var(--cyan)" fill="none" viewBox="0 0 24 24" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div>
+            <div class="hero-stat-val">25,000+</div>
+            <div class="hero-stat-lbl">Real Reviews</div>
+          </div>
+        </div>
+
+        <div class="hero-stat-divider"></div>
+
+        <div class="hero-stat-item">
+          <div class="hero-stat-icon-wrap">
+            <svg width="14" height="14" stroke="var(--emerald)" fill="none" viewBox="0 0 24 24" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div>
+            <div class="hero-stat-val">98.5%</div>
+            <div class="hero-stat-lbl">Bad Reviews Stopped</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Platform Compatibility Ribbon -->
+      <div class="hero-platforms-row">
+        <span>Trusted on:</span>
+        <div class="hero-platforms-list">
+          <span class="hero-platform-badge">Amazon India</span>
+          <span class="hero-platform-badge">Google Business</span>
+          <span class="hero-platform-badge">WhatsApp API</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="scroll-indicator">
+      <div class="scroll-bar"></div>
+      Scroll to explore
+    </div>
+  </header>
+
+  <!-- MOVING TICKER (Only visible AFTER small scroll) -->
+  <div class="marquee-band" aria-hidden="true">
+    <div class="marquee-track">
+      <div class="marquee-item">Real Amazon Reviews <span class="marquee-sep">//</span></div>
+      <div class="marquee-item accent">Google 5-Star Tap Cards <span class="marquee-sep">//</span></div>
+      <div class="marquee-item">Stop Negative Feedback <span class="marquee-sep">//</span></div>
+      <div class="marquee-item gold">IDA 2024 Award Winner <span class="marquee-sep">//</span></div>
+      <div class="marquee-item">Real Verified Buyers Across India <span class="marquee-sep">//</span></div>
+      <div class="marquee-item accent">Higher Sales & Better Rank <span class="marquee-sep">//</span></div>
+      <!-- Duplicate for seamless loop -->
+      <div class="marquee-item">Real Amazon Reviews <span class="marquee-sep">//</span></div>
+      <div class="marquee-item accent">Google 5-Star Tap Cards <span class="marquee-sep">//</span></div>
+      <div class="marquee-item">Stop Negative Feedback <span class="marquee-sep">//</span></div>
+      <div class="marquee-item gold">IDA 2024 Award Winner <span class="marquee-sep">//</span></div>
+      <div class="marquee-item">Real Verified Buyers Across India <span class="marquee-sep">//</span></div>
+      <div class="marquee-item accent">Higher Sales & Better Rank <span class="marquee-sep">//</span></div>
+    </div>
+  </div>
+
+  <!-- SECTION 01: MANIFESTO (Simple Words) -->
+  <section class="manifesto-sec shell" id="about">
+    <div class="sec-label rv">01 — The Big Idea</div>
+    <p class="manifesto-p" id="manifestoText">
+      People buy from businesses they trust. A single bad review can hurt sales for months. Rapid Review brings you genuine 5-star reviews on Amazon and Google, while quietly catching customer complaints in private so you can fix them.
+    </p>
+  </section>
+
+  <!-- SECTION 02: AWARD RECOGNITION (From PDF) -->
+  <section class="award-sec shell" id="award">
+    <div class="sec-head rv">
+      <div class="sec-label">02 — National Recognition</div>
+      <h2 class="sec-title">
+        Awarded as India’s <span class="highlight">Top Reputation Brand</span>
+      </h2>
+      <p class="sec-lead">
+        Recognized at the prestigious <strong>IDA Awards 2024</strong> and presented by Bollywood celebrity <strong>Shilpa Shetty</strong>.
+      </p>
+    </div>
+
+    <div class="award-card-grid">
+      <div class="award-visual-box rv">
+        <span class="award-badge-tag">IDA Award Winner 2024</span>
+        <h3 class="award-visual-title">
+          "Awarded as Best Amazon Review Company & Top Online Reputation Management Brand"
+        </h3>
+        <p class="award-desc-quote">
+          Honored for helping brands grow their ratings safely and legally, protecting businesses against unfair 1-star reviews.
+        </p>
+        <div class="award-presenter">
+          <div class="presenter-avatar">IDA</div>
+          <div class="presenter-info">
+            <h4>Presented by Shilpa Shetty</h4>
+            <p>IDA National Brand Awards</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="award-checklist">
+        <div class="award-check-item rv">
+          <div class="check-circle"><svg><use href="#check"/></svg></div>
+          <div class="check-text">
+            <h4>100% Safe & Legal</h4>
+            <p>We strictly follow marketplace rules. Every review comes from real, genuine consumer accounts with zero bots.</p>
+          </div>
+        </div>
+
+        <div class="award-check-item rv">
+          <div class="check-circle"><svg><use href="#check"/></svg></div>
+          <div class="check-text">
+            <h4>Real Buyers Across India</h4>
+            <p>Our reviewers are verified people from North, South, East, and West India, giving your products natural, diverse feedback.</p>
+          </div>
+        </div>
+
+        <div class="award-check-item rv">
+          <div class="check-circle"><svg><use href="#check"/></svg></div>
+          <div class="check-text">
+            <h4>Zero Product Loss</h4>
+            <p>For Amazon boosting, you only provide empty packaging boxes. You never have to give away expensive inventory.</p>
+          </div>
+        </div>
+
+        <div class="award-check-item rv">
+          <div class="check-circle"><svg><use href="#check"/></svg></div>
+          <div class="check-text">
+            <h4>Higher Ranking & More Sales</h4>
+            <p>Products with higher star ratings and frequent reviews naturally rank higher on Amazon and attract more paying buyers.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 03: WHAT WE DO (Clean 2x2) -->
+  <section class="services-sec shell" id="services">
+    <div class="sec-head rv">
+      <div class="sec-label">03 — What We Do</div>
+      <h2 class="sec-title">
+        Everything You Need for <span class="highlight">5-Star Growth</span>
+      </h2>
+      <p class="sec-lead">
+        Simple, reliable tools to grow your sales and keep your reputation spotless.
+      </p>
+    </div>
+
+    <div class="services-grid">
+      <!-- 01 -->
+      <div class="service-card hoverable rv" data-label="Amazon">
+        <div>
+          <div class="svc-num">/01</div>
+          <h3 class="svc-title">Real Amazon Reviews</h3>
+          <p class="svc-desc">
+            Get honest, detailed reviews from verified buyers across India. We use empty packaging boxes so you don't lose any real stock.
+          </p>
+        </div>
+        <div class="svc-tags">
+          <span class="svc-tag">Zero Inventory Loss</span>
+          <span class="svc-tag">Verified Purchase Badge</span>
+          <span class="svc-tag">Bestseller Rank Boost</span>
+        </div>
+      </div>
+
+      <!-- 02 -->
+      <div class="service-card hoverable rv" data-label="Google">
+        <div>
+          <div class="svc-num">/02</div>
+          <h3 class="svc-title">Google Tap Cards & QR Stands</h3>
+          <p class="svc-desc">
+            Sleek contactless cards and table stands. Customers tap their phone or scan the QR code to leave a Google review in 5 seconds.
+          </p>
+        </div>
+        <div class="svc-tags">
+          <span class="svc-tag">No App Required</span>
+          <span class="svc-tag">Takes 5 Seconds</span>
+          <span class="svc-tag">For Counters & Tables</span>
+        </div>
+      </div>
+
+      <!-- 03 -->
+      <div class="service-card hoverable rv" data-label="Shield">
+        <div>
+          <div class="svc-num">/03</div>
+          <h3 class="svc-title">Stop Negative Reviews</h3>
+          <p class="svc-desc">
+            Happy customers are sent to Google. Unhappy ones are routed to a private feedback form so you can solve their issue without public 1-star damage.
+          </p>
+        </div>
+        <div class="svc-tags">
+          <span class="svc-tag">98% Bad Reviews Caught</span>
+          <span class="svc-tag">Direct WhatsApp Alert</span>
+          <span class="svc-tag">Zero Public Harm</span>
+        </div>
+      </div>
+
+      <!-- 04 -->
+      <div class="service-card hoverable rv" data-label="Replies">
+        <div>
+          <div class="svc-num">/04</div>
+          <h3 class="svc-title">Smart Auto-Replies</h3>
+          <p class="svc-desc">
+            Every review on Google or Amazon is answered quickly and politely in your business voice, keeping customers happy 24/7.
+          </p>
+        </div>
+        <div class="svc-tags">
+          <span class="svc-tag">Always On (24/7)</span>
+          <span class="svc-tag">Polite & Helpful</span>
+          <span class="svc-tag">Better Google SEO</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 04: HOW IT WORKS & SIMULATOR -->
+  <section class="simulator-sec shell" id="how">
+    <div class="sec-head rv">
+      <div class="sec-label">04 — How It Works</div>
+      <h2 class="sec-title">
+        Simple Process. <span class="highlight">Try It Below.</span>
+      </h2>
+      <p class="sec-lead">
+        See how easily your customers are routed. Tap the stars on the phone simulator to see it in action.
+      </p>
+    </div>
+
+    <div class="sim-container">
+      <div class="sim-left rv">
+        <div class="steps-list">
+          <div class="step-row">
+            <span class="step-num">01</span>
+            <div class="step-body">
+              <h4>Customer Taps or Scans</h4>
+              <p>They tap the NFC card on your counter or receive an automated review link after buying.</p>
+            </div>
+          </div>
+
+          <div class="step-row">
+            <span class="step-num">02</span>
+            <div class="step-body">
+              <h4>Happy Customers (4–5★)</h4>
+              <p>Routed immediately to your Google profile to publish glowing public reviews in 1 tap.</p>
+            </div>
+          </div>
+
+          <div class="step-row">
+            <span class="step-num">03</span>
+            <div class="step-body">
+              <h4>Unhappy Customers (1–3★)</h4>
+              <p>Gently caught in a private message sent directly to you, so you can fix it privately.</p>
+            </div>
+          </div>
+        </div>
+
+        <a href="#contact" class="cta-btn cta-btn-cyan hoverable" data-label="Start">
+          Set This Up for Your Brand
+          <svg width="12" height="12"><use href="#arrow"/></svg>
+        </a>
+      </div>
+
+      <!-- Interactive Phone -->
+      <div class="phone-mockup-frame rv">
+        <div class="phone-speaker"></div>
+        <div class="phone-screen">
+          <div class="phone-header">
+            <div class="phone-logo-dot">RR</div>
+            <h4>Rate Your Visit</h4>
+            <p>Tap a star to test:</p>
+          </div>
+
+          <div class="phone-rating-card">
+            <h5>How was your experience today?</h5>
+            <div class="phone-stars">
+              <button class="sim-star-btn active hoverable" data-rating="1" aria-label="1 star" data-label="1★"><svg><use href="#star"/></svg></button>
+              <button class="sim-star-btn active hoverable" data-rating="2" aria-label="2 stars" data-label="2★"><svg><use href="#star"/></svg></button>
+              <button class="sim-star-btn active hoverable" data-rating="3" aria-label="3 stars" data-label="3★"><svg><use href="#star"/></svg></button>
+              <button class="sim-star-btn active hoverable" data-rating="4" aria-label="4 stars" data-label="4★"><svg><use href="#star"/></svg></button>
+              <button class="sim-star-btn active hoverable" data-rating="5" aria-label="5 stars" data-label="5★"><svg><use href="#star"/></svg></button>
+            </div>
+          </div>
+
+          <div class="sim-flow-result google-route" id="simResultBox">
+            <h6 style="color:var(--emerald);">✓ 4–5 Stars: Sent to Google</h6>
+            <p>Happy customer is taken straight to Google Maps to post public 5 stars in seconds.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 05: RESULTS (From PDF) -->
+  <section class="proof-sec shell" id="cases">
+    <div class="sec-head rv">
+      <div class="sec-label">05 — Real Results</div>
+      <h2 class="sec-title">
+        Real Brands. <span class="highlight">Proven Growth.</span>
+      </h2>
+      <p class="sec-lead">
+        Here is what happened to real products after working with Rapid Review.
+      </p>
+    </div>
+
+    <div class="proof-grid">
+      <!-- 1: Smartivity -->
+      <div class="case-card hoverable rv" data-label="Smartivity">
+        <div class="case-top">
+          <span class="case-brand-tag">Toy & Education</span>
+          <span class="case-badge">Amazon India</span>
+        </div>
+        <h3 class="case-title">Smartivity: Science Kit</h3>
+        <div class="case-numbers">
+          <div class="case-num-col before">
+            <h6>Before</h6>
+            <div class="case-rating">4.1 ★ (286 reviews)</div>
+            <div class="case-sub">300+ sales / month</div>
+          </div>
+          <div class="case-num-col after">
+            <h6>After</h6>
+            <div class="case-rating" style="color:var(--emerald);">4.4 ★ (625 reviews)</div>
+            <div class="case-sub">1,000+ sales / month</div>
+          </div>
+        </div>
+        <div class="case-result-bar">
+          <span>Sales tripled (+233%)</span>
+          <a href="https://amzn.in/d/5Pa2iNA" target="_blank" rel="noopener">Check on Amazon →</a>
+        </div>
+      </div>
+
+      <!-- 2: AGARO -->
+      <div class="case-card hoverable rv" data-label="AGARO">
+        <div class="case-top">
+          <span class="case-brand-tag">Home Appliances</span>
+          <span class="case-badge">Amazon India</span>
+        </div>
+        <h3 class="case-title">AGARO: Pressure Washer</h3>
+        <div class="case-numbers">
+          <div class="case-num-col before">
+            <h6>Before</h6>
+            <div class="case-rating" style="color:var(--ruby);">3.1 ★ (216 reviews)</div>
+            <div class="case-sub">100+ sales / month</div>
+          </div>
+          <div class="case-num-col after">
+            <h6>After</h6>
+            <div class="case-rating" style="color:var(--emerald);">4.3 ★ (825 reviews)</div>
+            <div class="case-sub">200+ sales / month</div>
+          </div>
+        </div>
+        <div class="case-result-bar">
+          <span>Rescued from poor 3.1★ rating</span>
+          <a href="https://amzn.in/d/3dCRB4R" target="_blank" rel="noopener">Check on Amazon →</a>
+        </div>
+      </div>
+
+      <!-- 3: NYRWANA -->
+      <div class="case-card hoverable rv" data-label="NYRWANA">
+        <div class="case-top">
+          <span class="case-brand-tag">Electronics</span>
+          <span class="case-badge">Amazon India</span>
+        </div>
+        <h3 class="case-title">NYRWANA: Clip Reading Lamp</h3>
+        <div class="case-numbers">
+          <div class="case-num-col before">
+            <h6>Before</h6>
+            <div class="case-rating">3.6 ★ (94 reviews)</div>
+            <div class="case-sub">100+ sales / month</div>
+          </div>
+          <div class="case-num-col after">
+            <h6>After</h6>
+            <div class="case-rating" style="color:var(--emerald);">4.2 ★ (683 reviews)</div>
+            <div class="case-sub">700+ sales / month</div>
+          </div>
+        </div>
+        <div class="case-result-bar">
+          <span>7x Sales Growth (+600%)</span>
+          <a href="https://amzn.in/d/0hXid8d" target="_blank" rel="noopener">Check on Amazon →</a>
+        </div>
+      </div>
+
+      <!-- 4: ShineXPro -->
+      <div class="case-card hoverable rv" data-label="ShineXPro">
+        <div class="case-top">
+          <span class="case-brand-tag">Auto Care</span>
+          <span class="case-badge">Amazon India</span>
+        </div>
+        <h3 class="case-title">ShineXPro: Helmet Cleaner</h3>
+        <div class="case-numbers">
+          <div class="case-num-col before">
+            <h6>Before</h6>
+            <div class="case-rating">4.2 ★ (561 reviews)</div>
+            <div class="case-sub">700+ sales / month</div>
+          </div>
+          <div class="case-num-col after">
+            <h6>After</h6>
+            <div class="case-rating" style="color:var(--emerald);">4.4 ★ (1,400+ reviews)</div>
+            <div class="case-sub">2,000+ sales / month</div>
+          </div>
+        </div>
+        <div class="case-result-bar">
+          <span>Over 2,000 units sold monthly</span>
+          <a href="https://amzn.in/d/8nNi6h7" target="_blank" rel="noopener">Check on Amazon →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 06: SIMPLE ROI CALCULATOR -->
+  <section class="roi-sec shell" id="roi">
+    <div class="sec-head rv">
+      <div class="sec-label">06 — Growth Calculator</div>
+      <h2 class="sec-title">
+        See How Much <span class="highlight">Your Sales Can Grow</span>
+      </h2>
+      <p class="sec-lead">
+        Higher ratings bring more buyers. Drag the slider to see your estimated sales increase.
+      </p>
+    </div>
+
+    <div class="roi-card rv">
+      <div class="roi-inputs">
+        <div class="slider-group">
+          <div class="slider-top">
+            <span>Your Current Monthly Sales</span>
+            <span class="slider-bubble" id="valRevenue">₹5.0 Lakhs/mo</span>
+          </div>
+          <input type="range" id="rangeRevenue" min="100" max="5000" step="50" value="500" class="hoverable" data-label="Drag">
+        </div>
+
+        <div class="slider-group">
+          <div class="slider-top">
+            <span>Your Current Star Rating</span>
+            <span class="slider-bubble" id="valRating">3.4 ★</span>
+          </div>
+          <input type="range" id="rangeRating" min="2.5" max="4.3" step="0.1" value="3.4" class="hoverable" data-label="Drag">
+        </div>
+
+        <p style="font-size:12.5px; color:var(--bone-dim); margin-top:8px;">
+          Improving your rating to 4.6★+ typically increases customer conversion by <strong>28% to 50%</strong>.
+        </p>
+      </div>
+
+      <div class="roi-result-card">
+        <div>
+          <div class="roi-extra-label">Estimated Extra Sales Each Month</div>
+          <div class="roi-extra-amount" id="roiLiftNum">+₹1.84 Lakhs</div>
+          <p style="font-size:13px; color:var(--bone-dim);">
+            Estimated lift: <strong id="roiConvRate" style="color:var(--emerald);">+37%</strong> (<span id="roiExtraOrders">~102 more orders</span>)
+          </p>
+        </div>
+        <a href="#contact" class="cta-btn cta-btn-cyan hoverable" data-label="Claim" style="margin-top:20px; justify-content:center;">
+          Get This Growth
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 07: PRICING -->
+  <section class="pricing-sec shell" id="pricing">
+    <div class="sec-head rv">
+      <div class="sec-label">07 — Simple Pricing</div>
+      <h2 class="sec-title">
+        Clear Plans. <span class="highlight">Zero Surprises.</span>
+      </h2>
+      <p class="sec-lead">
+        Pick the plan that fits your business size.
+      </p>
+    </div>
+
+    <div class="pricing-grid">
+      <!-- 1 -->
+      <div class="pricing-card hoverable rv" data-label="Starter">
+        <div class="plan-name">Starter Plan</div>
+        <div class="plan-sub">Great for single Amazon products or small local shops.</div>
+        <div class="plan-cost">₹14,999 <span>/ campaign</span></div>
+        <div class="plan-features">
+          <div class="plan-feat-row"><svg><use href="#check"/></svg> 20 Real Verified Reviews</div>
+          <div class="plan-feat-row"><svg><use href="#check"/></svg> Empty box logistics included</div>
+          <div class="plan-feat-row"><svg><use href="#check"/></svg> Stop Bad Reviews shield</div>
+          <div class="plan-feat-row"><svg><use href="#check"/></svg> Full rating progress report</div>
+        </div>
+        <a href="#contact" class="cta-btn cta-btn-outline" style="justify-content:center;">Choose Starter</a>
+      </div>
+
+      <!-- 2 -->
+      <div class="pricing-card popular hoverable rv" data-label="Growth">
+        <div class="popular-badge">Most Popular</div>
+        <div class="plan-name">Growth Plan</div>
+        <div class="plan-sub">For growing brands that want fast category leadership.</div>
+        <div class="plan-cost">₹29,999 <span>/ campaign</span></div>
+        <div class="plan-features">
+          <div class="plan-feat-row"><svg><use href="#check"/></svg> 50 Real Verified Reviews</div>
+          <div class="plan-feat-row"><svg><use href="#check"/></svg> Buyers across all Indian regions</div>
+          <div class="plan-feat-row"><svg><use href="#check"/></svg> 2 Google NFC Tap Cards included</div>
+          <div class="plan-feat-row"><svg><use href="#check"/></svg> Automated Review Replies (24/7)</div>
+          <div class="plan-feat-row"><svg><use href="#check"/></svg> Weekly ranking tracking</div>
+        </div>
+        <a href="#contact" class="cta-btn cta-btn-cyan" style="justify-content:center;">Choose Growth</a>
+      </div>
+
+      <!-- 3 -->
+      <div class="pricing-card hoverable rv" data-label="Business">
+        <div class="plan-name">Business Scale</div>
+        <div class="plan-sub">For multi-product Amazon brands and retail chains.</div>
+        <div class="plan-cost">₹59,999 <span>/ month</span></div>
+        <div class="plan-features">
+          <div class="plan-feat-row"><svg><use href="#check"/></svg> 120+ Real Reviews every month</div>
+          <div class="plan-feat-row"><svg><use href="#check"/></svg> Multiple product boost</div>
+          <div class="plan-feat-row"><svg><use href="#check"/></svg> 10 Google NFC Tap Stands</div>
+          <div class="plan-feat-row"><svg><use href="#check"/></svg> Dedicated Account Manager</div>
+        </div>
+        <a href="#contact" class="cta-btn cta-btn-outline" style="justify-content:center;">Talk to Us</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 08: FAQ -->
+  <section class="faq-sec shell" id="faq">
+    <div class="sec-head rv">
+      <div class="sec-label">08 — Questions & Answers</div>
+      <h2 class="sec-title">
+        Common Questions. <span class="highlight">Clear Answers.</span>
+      </h2>
+    </div>
+
+    <div class="faq-list">
+      <details class="faq-item rv" open>
+        <summary class="faq-summary hoverable" data-label="Toggle">
+          Are these reviews legal and safe for my account?
+          <span class="faq-icon">+</span>
+        </summary>
+        <div class="faq-answer">
+          Yes, 100%. We never use software bots or fake profiles. Every review is placed by a real person with an active Amazon or Google account across India, keeping your seller account completely safe.
+        </div>
+      </details>
+
+      <details class="faq-item rv">
+        <summary class="faq-summary hoverable" data-label="Toggle">
+          Why do you use empty boxes?
+          <span class="faq-icon">+</span>
+        </summary>
+        <div class="faq-answer">
+          Sending empty boxes allows real delivery tracking to verify the purchase on Amazon without you having to sacrifice expensive product inventory. It saves you huge costs.
+        </div>
+      </details>
+
+      <details class="faq-item rv">
+        <summary class="faq-summary hoverable" data-label="Toggle">
+          How do the Google Tap Cards stop bad reviews?
+          <span class="faq-icon">+</span>
+        </summary>
+        <div class="faq-answer">
+          When a customer taps your card, happy customers (4 or 5 stars) are sent directly to Google. If someone is unhappy (1, 2, or 3 stars), the card sends their feedback to you privately so you can fix it before it ever hurts your public rating.
+        </div>
+      </details>
+
+      <details class="faq-item rv">
+        <summary class="faq-summary hoverable" data-label="Toggle">
+          How quickly will I see sales go up?
+          <span class="faq-icon">+</span>
+        </summary>
+        <div class="faq-answer">
+          Most clients see their product rank climb higher within 2 to 3 weeks. As seen in our Smartivity and AGARO cases, consistent 5-star reviews regularly double or triple monthly orders.
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- SECTION 09: CONTACT -->
+  <section class="contact-sec shell" id="contact">
+    <div class="contact-box">
+      <div class="contact-left rv">
+        <div class="sec-label">09 — Get in Touch</div>
+        <h2>Ready to Grow <span class="highlight">Your Reviews?</span></h2>
+        <p>
+          Tell us about your brand. Our team will review your product and message you back within 2 hours on WhatsApp.
+        </p>
+
+        <a href="https://wa.me/918590954151?text=Hi%20Rapid%20Review,%20I'd%20like%20to%20grow%20my%20reviews." target="_blank" rel="noopener" class="cta-btn cta-btn-cyan hoverable" data-label="WhatsApp">
+          Message Us on WhatsApp
+          <svg width="12" height="12"><use href="#arrow"/></svg>
+        </a>
+      </div>
+
+      <div class="contact-card rv">
+        <form id="leadForm">
+          <div class="form-group">
+            <label for="brandName">Brand or Shop Name</label>
+            <input type="text" id="brandName" class="form-control hoverable" placeholder="e.g. Smartivity" required data-label="Type">
+          </div>
+
+          <div class="form-group">
+            <label for="platformSelect">What do you want to boost?</label>
+            <select id="platformSelect" class="form-control hoverable" data-label="Select">
+              <option value="Amazon Reviews">Amazon Product Reviews</option>
+              <option value="Google Reviews">Google Business Reviews (NFC Cards)</option>
+              <option value="Both Amazon and Google">Both Amazon & Google</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="clientPhone">WhatsApp Number</label>
+            <input type="tel" id="clientPhone" class="form-control hoverable" placeholder="+91 98765 43210" required data-label="Type">
+          </div>
+
+          <button type="submit" class="form-submit-btn hoverable" data-label="Send">
+            Get Pricing & Proposal on WhatsApp
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Floating WhatsApp Pill -->
+  <a href="https://wa.me/918590954151?text=Hi%20Rapid%20Review,%20I'd%20like%20to%20discuss%20a%20campaign." target="_blank" rel="noopener" class="floating-wa-btn hoverable" data-label="WhatsApp" aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+    <span>WhatsApp</span>
+  </a>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="shell footer-inner">
+      <div>© 2024–2026 Rapid Review. Awarded at IDA Awards.</div>
+      <div class="footer-socials">
+        <a href="https://wa.me/918590954151" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="mailto:contact@rapidreview.in">Email</a>
+        <a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
