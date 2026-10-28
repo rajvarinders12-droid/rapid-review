@@ -413,9 +413,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const platform = document.getElementById('platformSelect')?.value || 'All 4 Platforms';
       const phone = document.getElementById('clientPhone')?.value || '';
 
-      const message = `Hello Rapid Review Team,\n\nI would like to start a Reputation Campaign for *${brandName}*.\n- Platform: ${platform}\n- WhatsApp Contact: ${phone}\n\nPlease share campaign timeline and pricing.`;
+      const message = `Hello Rapid Review Team,\n\nI would like to start a Reputation Campaign for *${brandName}*.\n- Platform: ${platform}\n- WhatsApp Contact: ${phone}\n\nPlease share campaign timeline and proposal.`;
 
-      const waUrl = `https://wa.me/918590954151?text=${encodeURIComponent(message)}`;
+      const waUrl = `https://wa.me/917341138757?text=${encodeURIComponent(message)}`;
       window.open(waUrl, '_blank');
     });
   }
