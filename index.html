@@ -211,10 +211,12 @@
       </div>
     </div>
 
-    <div class="scroll-indicator">
-      <div class="scroll-bar"></div>
-      Scroll to explore
-    </div>
+    <a href="#about" class="scroll-indicator hoverable" aria-label="Scroll to explore" data-label="Scroll">
+      <div class="scroll-mouse-pill">
+        <span class="scroll-wheel-dot"></span>
+      </div>
+      <span class="scroll-lbl">Scroll to explore</span>
+    </a>
   </header>
 
   <!-- MOVING TICKER (Only visible AFTER small scroll) -->
@@ -242,10 +244,10 @@
     <div class="sec-head rv">
       <div class="sec-label">01 — The Big Idea</div>
       <h2 class="sec-title">
-        The Dual-Action Engine That <span class="highlight">Protects & Multiplies Your Sales</span>
+        Get More 5-Star Reviews. <span class="highlight">Stop Bad Reviews in Private.</span>
       </h2>
       <p class="sec-lead">
-        93% of customers check reviews before spending money. Yet happy customers rarely speak up, while 1 angry review can destroy your ranking. Rapid Review gives you total control.
+        Happy customers are guided to leave 5-star reviews on Amazon and Google. Unhappy customers talk to you privately so you can fix their issue before they hurt your rating.
       </p>
     </div>
 
@@ -253,9 +255,9 @@
     <div class="big-idea-manifesto-box rv">
       <div class="manifesto-badge-row">
         <span class="manifesto-badge">
-          <svg width="13" height="13"><use href="#sparkle"/></svg> The Core Philosophy
+          <svg width="13" height="13"><use href="#sparkle"/></svg> The Core Idea
         </span>
-        <span class="manifesto-subtag">India's Leading Reputation Architecture</span>
+        <span class="manifesto-subtag">Simple & Proven System</span>
       </div>
       <div class="manifesto-quote-icon">“</div>
       <p class="manifesto-p" id="manifestoText">
@@ -263,7 +265,7 @@
       </p>
       <div class="manifesto-author-bar">
         <div class="author-dot"></div>
-        <span>The Proven Formula: <strong>Public 5-Stars + Private Dispute Interception = Unstoppable Growth</strong></span>
+        <span>The Formula: <strong>5-Star Reviews in Public + Problems Fixed in Private = More Sales</strong></span>
       </div>
     </div>
 
@@ -439,18 +441,23 @@
 
     <div class="award-card-grid">
       <div class="award-visual-box rv">
-        <span class="award-badge-tag">IDA Award Winner 2024</span>
-        <h3 class="award-visual-title">
-          "Awarded as Best Amazon Review Company & Top Online Reputation Management Brand"
-        </h3>
-        <p class="award-desc-quote">
-          Honored for helping brands grow their ratings safely and legally, protecting businesses against unfair 1-star reviews.
-        </p>
-        <div class="award-presenter">
-          <div class="presenter-avatar">IDA</div>
-          <div class="presenter-info">
-            <h4>Presented by Shilpa Shetty</h4>
-            <p>IDA National Brand Awards</p>
+        <div class="award-img-showcase">
+          <img src="assets/award.png" alt="Rapid Review awarded by Shilpa Shetty at IDA National Brand Awards 2024" class="award-img" loading="lazy">
+          <span class="award-badge-tag">IDA Award Winner 2024</span>
+        </div>
+        <div class="award-box-content">
+          <h3 class="award-visual-title">
+            "Awarded as Best Amazon Review Company & Top Online Reputation Management Brand"
+          </h3>
+          <p class="award-desc-quote">
+            Honored for helping brands grow their ratings safely and legally, protecting businesses against unfair 1-star reviews.
+          </p>
+          <div class="award-presenter">
+            <div class="presenter-avatar">IDA</div>
+            <div class="presenter-info">
+              <h4>Presented by Shilpa Shetty</h4>
+              <p>IDA National Brand Awards 2024</p>
+            </div>
           </div>
         </div>
       </div>
@@ -661,6 +668,9 @@
     <div class="proof-grid">
       <!-- 1: Smartivity -->
       <div class="case-card hoverable rv" data-label="Smartivity">
+        <div class="case-img-wrap">
+          <img src="assets/ba1.png" alt="Smartivity Before and After Growth with Rapid Review" class="case-img" loading="lazy">
+        </div>
         <div class="case-top">
           <span class="case-brand-tag">Toy & Education</span>
           <span class="case-badge">Amazon India</span>
@@ -686,6 +696,9 @@
 
       <!-- 2: AGARO -->
       <div class="case-card hoverable rv" data-label="AGARO">
+        <div class="case-img-wrap">
+          <img src="assets/ba2.png" alt="AGARO Pressure Washer Before and After Rating Recovery" class="case-img" loading="lazy">
+        </div>
         <div class="case-top">
           <span class="case-brand-tag">Home Appliances</span>
           <span class="case-badge">Amazon India</span>
@@ -711,6 +724,9 @@
 
       <!-- 3: NYRWANA -->
       <div class="case-card hoverable rv" data-label="NYRWANA">
+        <div class="case-img-wrap">
+          <img src="assets/ba3.png" alt="NYRWANA Reading Lamp 7x Sales Growth" class="case-img" loading="lazy">
+        </div>
         <div class="case-top">
           <span class="case-brand-tag">Electronics</span>
           <span class="case-badge">Amazon India</span>
@@ -736,6 +752,9 @@
 
       <!-- 4: ShineXPro -->
       <div class="case-card hoverable rv" data-label="ShineXPro">
+        <div class="case-img-wrap">
+          <img src="assets/ba4.png" alt="ShineXPro Over 2,000 Units Sold Monthly" class="case-img" loading="lazy">
+        </div>
         <div class="case-top">
           <span class="case-brand-tag">Auto Care</span>
           <span class="case-badge">Amazon India</span>
@@ -985,8 +1004,6 @@
     </div>
   </footer>
 
-  <!-- Lenis Smooth Scroll -->
-  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>
