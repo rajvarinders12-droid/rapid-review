@@ -79,19 +79,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* ============================================================
-     3. HALFTONE CANVAS IN HERO (Lightweight, GPU-efficient & Fast)
+     3. HALFTONE CANVAS IN HERO (Rich, Interactive Wave Grid)
      ============================================================ */
   const canvas = document.getElementById('halftone');
-  if (canvas && window.innerWidth >= 768) {
+  if (canvas) {
     const ctx = canvas.getContext('2d');
     let width = 0, height = 0;
-    const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.75);
     let mx = -9999, my = -9999;
     let time = 0;
     let isVisible = true;
-    let isRunning = false;
-    let idleTimer = 180;
-    const gap = 32; // Generous 32px spacing: 85% fewer dots, silky 60fps
+    let isRunning = true;
+    const isMobile = window.innerWidth < 768;
+    const gap = isMobile ? 22 : 16;
 
     const resizeCanvas = () => {
       width = canvas.offsetWidth;
@@ -109,11 +109,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const rect = canvas.getBoundingClientRect();
         mx = e.clientX - rect.left;
         my = e.clientY - rect.top;
-        idleTimer = 150;
-        if (!isRunning && isVisible && window.scrollY < 200) {
-          isRunning = true;
-          requestAnimationFrame(drawCanvas);
-        }
       }, { passive: true });
 
       heroSection.addEventListener('mouseleave', () => {
@@ -124,78 +119,49 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const canvasObserver = new IntersectionObserver((entries) => {
       isVisible = entries[0].isIntersecting;
-      if (isVisible && !isRunning && window.scrollY < 200) {
+      if (isVisible && !isRunning) {
         isRunning = true;
-        idleTimer = 120;
         requestAnimationFrame(drawCanvas);
-      } else if (!isVisible) {
-        isRunning = false;
       }
     }, { threshold: 0.05 });
     canvasObserver.observe(canvas);
 
-    let lastDraw = 0;
-    const drawCanvas = (now) => {
-      if (!isVisible || window.scrollY > 250) {
+    const drawCanvas = () => {
+      if (!isVisible) {
         isRunning = false;
         return;
       }
 
-      // Throttle to 30 FPS to reduce CPU consumption by 50%+
-      if (now - lastDraw < 33) {
-        if (isRunning) requestAnimationFrame(drawCanvas);
-        return;
-      }
-      lastDraw = now;
-
-      time += 0.015;
+      time += 0.012;
       ctx.clearRect(0, 0, width, height);
-
-      // Batched rendering: 2 fill calls instead of thousands!
-      ctx.beginPath();
-      let hasActive = false;
-      const activeDots = [];
 
       for (let y = gap / 2; y < height; y += gap) {
         for (let x = gap / 2; x < width; x += gap) {
-          const wave = Math.sin(x * 0.006 + time) * Math.cos(y * 0.007 - time * 0.8) * 0.5;
+          const wave = Math.sin(x * 0.007 + time * 1.5) * Math.cos(y * 0.009 - time) * 0.5 +
+                       Math.sin((x + y) * 0.005 + time * 0.8) * 0.5;
+
           const dx = x - mx;
           const dy = y - my;
           const dist = Math.hypot(dx, dy);
+          const mouseEffect = Math.max(0, 1 - dist / 180);
 
-          if (dist < 150) {
-            activeDots.push({ x, y, r: 2.8 + (1 - dist / 150) * 3 });
-            hasActive = true;
+          const radius = Math.max(0.6, (wave * 0.5 + 0.5) * 2.2 + mouseEffect * 3.4);
+          const alpha = Math.min(0.85, 0.12 + (wave * 0.5 + 0.5) * 0.25 + mouseEffect * 0.55);
+
+          ctx.beginPath();
+          ctx.arc(x, y, radius, 0, Math.PI * 2);
+          if (mouseEffect > 0.1) {
+            ctx.fillStyle = `rgba(56, 189, 248, ${alpha})`;
           } else {
-            const radius = Math.max(0.7, (wave * 0.5 + 0.5) * 1.8);
-            ctx.moveTo(x + radius, y);
-            ctx.arc(x, y, radius, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(125, 151, 168, ${alpha})`;
           }
+          ctx.fill();
         }
       }
-      ctx.fillStyle = 'rgba(125, 151, 168, 0.2)';
-      ctx.fill();
 
-      if (hasActive) {
-        ctx.beginPath();
-        for (let i = 0; i < activeDots.length; i++) {
-          const p = activeDots[i];
-          ctx.moveTo(p.x + p.r, p.y);
-          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        }
-        ctx.fillStyle = 'rgba(56, 189, 248, 0.75)';
-        ctx.fill();
-      }
-
-      if (idleTimer > 0) {
-        idleTimer--;
-        requestAnimationFrame(drawCanvas);
-      } else {
-        isRunning = false;
-      }
+      requestAnimationFrame(drawCanvas);
     };
 
-    isRunning = true;
     requestAnimationFrame(drawCanvas);
   }
 
@@ -403,14 +369,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* ============================================================
-     8. CONTACT FORM -> WHATSAPP
+     8. CONTACT FORM -> WHATSAPP (with Custom Platform Support)
      ============================================================ */
   const leadForm = document.getElementById('leadForm');
+  const platformSelect = document.getElementById('platformSelect');
+  const customPlatformGroup = document.getElementById('customPlatformGroup');
+  const customPlatformInput = document.getElementById('customPlatformInput');
+
+  if (platformSelect && customPlatformGroup) {
+    platformSelect.addEventListener('change', () => {
+      if (platformSelect.value === 'custom') {
+        customPlatformGroup.style.display = 'flex';
+        if (customPlatformInput) customPlatformInput.focus();
+      } else {
+        customPlatformGroup.style.display = 'none';
+      }
+    });
+  }
+
   if (leadForm) {
     leadForm.addEventListener('submit', (e) => {
       e.preventDefault();
       const brandName = document.getElementById('brandName')?.value || 'Our Brand';
-      const platform = document.getElementById('platformSelect')?.value || 'All 4 Platforms';
+      let platform = platformSelect?.value || 'All 4 Platforms';
+      if (platform === 'custom') {
+        platform = customPlatformInput?.value?.trim() || 'Custom / Other Platforms';
+      }
       const phone = document.getElementById('clientPhone')?.value || '';
 
       const message = `Hello Rapid Review Team,\n\nI would like to start a Reputation Campaign for *${brandName}*.\n- Platform: ${platform}\n- WhatsApp Contact: ${phone}\n\nPlease share campaign timeline and proposal.`;
