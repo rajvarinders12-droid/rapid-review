@@ -323,7 +323,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* ============================================================
-     6. PHONE FUNNEL SIMULATOR
+     6. PHONE FUNNEL SIMULATOR (100% Positive Growth-Oriented)
      ============================================================ */
   const starButtons = document.querySelectorAll('.sim-star-btn');
   const simResultBox = document.getElementById('simResultBox');
@@ -342,14 +342,14 @@ document.addEventListener('DOMContentLoaded', () => {
     if (rating >= 4) {
       simResultBox.className = 'sim-flow-result google-route';
       simResultBox.innerHTML = `
-        <h6 style="color:var(--emerald);">★ 5-Star Reviews: Google Maps, Amazon, Trustpilot & Facebook</h6>
-        <p>Happy customer publishes public 5-star reviews in 5 seconds, boosting your sales and ranking.</p>
+        <h6 style="color:var(--emerald);">★ 5-Star Reviews Published Instantly</h6>
+        <p>Customer publishes a verified 5-star review across Google Maps, Amazon, Trustpilot & Facebook in seconds, lifting your rankings and sales.</p>
       `;
     } else {
       simResultBox.className = 'sim-flow-result support-route';
       simResultBox.innerHTML = `
-        <h6 style="color:var(--cyan);">💬 1-on-1 VIP Support Connected</h6>
-        <p>Customer connects directly to your private WhatsApp for fast, personal care that builds brand loyalty.</p>
+        <h6 style="color:var(--cyan);">✦ Proactive Brand Care & Engagement</h6>
+        <p>Your team engages the customer proactively, creating high satisfaction, turning them into a happy reviewer and loyal repeat buyer.</p>
       `;
     }
   };
