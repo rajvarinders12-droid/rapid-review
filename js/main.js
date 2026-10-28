@@ -79,18 +79,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* ============================================================
-     3. HALFTONE CANVAS IN HERO (Rich, Interactive Wave Grid)
+     3. HALFTONE CANVAS IN HERO (Rich, Interactive Wave Grid with Auto Mobile Drift)
      ============================================================ */
   const canvas = document.getElementById('halftone');
   if (canvas) {
     const ctx = canvas.getContext('2d');
     let width = 0, height = 0;
-    const dpr = Math.min(window.devicePixelRatio || 1, 1.75);
+    const isMobile = window.innerWidth < 768;
+    const dpr = Math.min(window.devicePixelRatio || 1, isMobile ? 1.5 : 1.75);
     let mx = -9999, my = -9999;
     let time = 0;
     let isVisible = true;
     let isRunning = true;
-    const isMobile = window.innerWidth < 768;
     const gap = isMobile ? 22 : 16;
 
     const resizeCanvas = () => {
@@ -115,6 +115,20 @@ document.addEventListener('DOMContentLoaded', () => {
         mx = -9999;
         my = -9999;
       });
+
+      // Mobile Touch Interaction
+      heroSection.addEventListener('touchmove', (e) => {
+        if (e.touches && e.touches[0]) {
+          const rect = canvas.getBoundingClientRect();
+          mx = e.touches[0].clientX - rect.left;
+          my = e.touches[0].clientY - rect.top;
+        }
+      }, { passive: true });
+
+      heroSection.addEventListener('touchend', () => {
+        mx = -9999;
+        my = -9999;
+      }, { passive: true });
     }
 
     const canvasObserver = new IntersectionObserver((entries) => {
@@ -135,17 +149,26 @@ document.addEventListener('DOMContentLoaded', () => {
       time += 0.012;
       ctx.clearRect(0, 0, width, height);
 
+      // On mobile or when mouse is idle, smoothly auto-glide the interactive center
+      let activeX = mx;
+      let activeY = my;
+      if (activeX < 0 || activeY < 0) {
+        // Continuous smooth figure-8 floating aura
+        activeX = (width * 0.5) + Math.sin(time * 0.75) * (width * 0.35);
+        activeY = (height * 0.45) + Math.cos(time * 0.5) * (height * 0.25);
+      }
+
       for (let y = gap / 2; y < height; y += gap) {
         for (let x = gap / 2; x < width; x += gap) {
           const wave = Math.sin(x * 0.007 + time * 1.5) * Math.cos(y * 0.009 - time) * 0.5 +
                        Math.sin((x + y) * 0.005 + time * 0.8) * 0.5;
 
-          const dx = x - mx;
-          const dy = y - my;
+          const dx = x - activeX;
+          const dy = y - activeY;
           const dist = Math.hypot(dx, dy);
-          const mouseEffect = Math.max(0, 1 - dist / 180);
+          const mouseEffect = Math.max(0, 1 - dist / (isMobile ? 140 : 180));
 
-          const radius = Math.max(0.6, (wave * 0.5 + 0.5) * 2.2 + mouseEffect * 3.4);
+          const radius = Math.max(0.6, (wave * 0.5 + 0.5) * 2.2 + mouseEffect * (isMobile ? 2.6 : 3.4));
           const alpha = Math.min(0.85, 0.12 + (wave * 0.5 + 0.5) * 0.25 + mouseEffect * 0.55);
 
           ctx.beginPath();

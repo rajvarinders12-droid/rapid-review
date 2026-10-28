@@ -1030,29 +1030,69 @@ img, svg { display: block; max-width: 100%; }
   color: var(--bone-dim);
 }
 
-/* Editorial Journey Card (Replaces AI flowchart) */
-.journey-flow-card {
-  background: linear-gradient(180deg, rgba(16, 185, 129, 0.05) 0%, rgba(15, 18, 23, 0.95) 100%);
-  border: 1px solid rgba(16, 185, 129, 0.22);
+/* Growth Image Showcase */
+.growth-img-showcase-wrap {
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
   border-radius: var(--radius-lg);
-  padding: clamp(24px, 4vw, 40px);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.04);
-  position: relative;
   overflow: hidden;
+  border: 1px solid rgba(16, 185, 129, 0.28);
+  background: var(--ink-2);
+  box-shadow: 0 16px 44px rgba(0, 0, 0, 0.5), 0 0 35px rgba(16, 185, 129, 0.08);
+  transition: transform 0.35s var(--ease-out), border-color 0.3s;
 }
 
-.journey-header {
+.growth-img-showcase-wrap:hover {
+  transform: translateY(-4px);
+  border-color: rgba(16, 185, 129, 0.45);
+}
+
+.growth-showcase-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+/* 3-Step Process Image Showcase */
+.step-image-showcase {
+  max-width: 760px;
+  width: 100%;
+  margin: 0 auto clamp(32px, 5vh, 48px);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid rgba(129, 140, 248, 0.28);
+  background: var(--ink-2);
+  box-shadow: 0 16px 44px rgba(0, 0, 0, 0.5), 0 0 35px rgba(129, 140, 248, 0.08);
+  transition: transform 0.35s var(--ease-out), border-color 0.3s;
+}
+
+.step-image-showcase:hover {
+  transform: translateY(-4px);
+  border-color: rgba(129, 140, 248, 0.45);
+}
+
+.step-showcase-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+/* Award Editorial Box (Explains How Rapid Review Helps Businesses) */
+.award-editorial-box {
+  background: linear-gradient(145deg, rgba(20, 24, 34, 0.95) 0%, rgba(13, 16, 22, 0.98) 100%);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  border-radius: var(--radius-lg);
+  padding: clamp(26px, 4.5vw, 42px);
+  box-shadow: 0 14px 38px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.05);
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 16px;
-  margin-bottom: clamp(24px, 3.5vw, 36px);
-  padding-bottom: 20px;
-  border-bottom: 1px solid var(--line);
+  flex-direction: column;
+  justify-content: center;
 }
 
-.journey-badge {
+.award-story-badge {
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -1060,144 +1100,63 @@ img, svg { display: block; max-width: 100%; }
   font-size: 11px;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--emerald);
-  background: rgba(16, 185, 129, 0.12);
-  border: 1px solid rgba(16, 185, 129, 0.28);
-  padding: 6px 14px;
+  letter-spacing: 0.08em;
+  color: var(--gold);
+  background: rgba(245, 158, 11, 0.1);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  padding: 5px 13px;
   border-radius: var(--radius-full);
+  margin-bottom: 18px;
+  align-self: flex-start;
 }
 
-.journey-metric-chip {
-  display: inline-flex;
-  align-items: baseline;
-  gap: 8px;
-}
-
-.journey-metric-chip .chip-val {
-  font-family: var(--font-m);
-  font-size: 22px;
+.award-story-title {
+  font-size: clamp(21px, 2.5vw, 29px);
   font-weight: 800;
-  color: var(--emerald);
+  line-height: 1.25;
+  color: var(--bone);
+  margin-bottom: 16px;
+  letter-spacing: -0.015em;
 }
 
-.journey-metric-chip .chip-label {
-  font-size: 12px;
+.award-story-p {
+  font-size: 14.5px;
   color: var(--bone-dim);
-  font-family: var(--font-m);
+  line-height: 1.7;
+  margin-bottom: 16px;
 }
 
-.journey-timeline {
+.award-story-stats {
   display: grid;
-  grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
-  align-items: center;
+  grid-template-columns: 1fr;
   gap: 12px;
-  margin-bottom: clamp(24px, 3vw, 32px);
+  margin-top: 10px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.timeline-step {
+.story-stat-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid var(--line);
+  padding: 10px 14px;
   border-radius: var(--radius-md);
-  padding: 18px 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  height: 100%;
-  transition: transform 0.2s, border-color 0.2s, background 0.2s;
 }
 
-.timeline-step:hover {
-  transform: translateY(-3px);
-  border-color: rgba(16, 185, 129, 0.35);
-  background: rgba(16, 185, 129, 0.03);
-}
-
-.timeline-step.highlight-step {
-  background: rgba(16, 185, 129, 0.06);
-  border-color: rgba(16, 185, 129, 0.32);
-}
-
-.timeline-icon-box {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.timeline-icon-box svg {
-  width: 22px;
-  height: 22px;
-  stroke: var(--emerald);
-  fill: none;
-}
-
-.timeline-num {
+.story-stat-item .stat-big {
   font-family: var(--font-m);
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--bone-muted);
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--gold);
+  min-width: 72px;
 }
 
-.timeline-content h4 {
-  font-size: 14.5px;
-  font-weight: 700;
-  color: var(--bone);
-  margin-bottom: 4px;
-  line-height: 1.3;
-}
-
-.timeline-content p {
-  font-size: 12px;
+.story-stat-item .stat-desc {
+  font-size: 12.5px;
   color: var(--bone-dim);
-  line-height: 1.5;
-  margin: 0;
-}
-
-.timeline-connector {
-  color: var(--emerald);
-  opacity: 0.6;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.journey-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 12px;
-  padding-top: 18px;
-  border-top: 1px solid var(--line);
-  font-size: 12px;
-  color: var(--bone-dim);
-}
-
-.journey-footer-left {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.journey-link {
-  color: var(--cyan);
-  font-weight: 600;
-  transition: color 0.2s;
-}
-
-.journey-link:hover {
-  color: #fff;
-}
-
-@media (max-width: 900px) {
-  .journey-timeline {
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
-  .timeline-connector {
-    transform: rotate(90deg);
-    padding: 2px 0;
-  }
+  line-height: 1.4;
 }
 
 /* 3 Pillars of The Big Idea */
