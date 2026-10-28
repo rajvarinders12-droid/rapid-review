@@ -991,13 +991,15 @@ img, svg { display: block; max-width: 100%; }
   transform: translateY(-4px);
 }
 
-.path-card.path-shield {
-  border: 1px solid rgba(245, 158, 11, 0.25);
-  background: linear-gradient(180deg, rgba(245, 158, 11, 0.05) 0%, var(--ink-card) 35%);
+.path-card.path-shield,
+.path-card.path-support {
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  background: linear-gradient(180deg, rgba(56, 189, 248, 0.05) 0%, var(--ink-card) 35%);
 }
 
-.path-card.path-shield:hover {
-  border-color: rgba(245, 158, 11, 0.45);
+.path-card.path-shield:hover,
+.path-card.path-support:hover {
+  border-color: rgba(56, 189, 248, 0.45);
   transform: translateY(-4px);
 }
 
@@ -1027,10 +1029,11 @@ img, svg { display: block; max-width: 100%; }
   border: 1px solid rgba(16, 185, 129, 0.25);
 }
 
-.path-icon-pill.shield {
-  background: rgba(245, 158, 11, 0.12);
-  color: var(--gold);
-  border: 1px solid rgba(245, 158, 11, 0.25);
+.path-icon-pill.shield,
+.path-icon-pill.support {
+  background: rgba(56, 189, 248, 0.12);
+  color: var(--cyan);
+  border: 1px solid rgba(56, 189, 248, 0.25);
 }
 
 .path-badge {
@@ -1048,9 +1051,10 @@ img, svg { display: block; max-width: 100%; }
   color: var(--emerald);
 }
 
-.path-badge.shield {
-  background: rgba(245, 158, 11, 0.15);
-  color: var(--gold);
+.path-badge.shield,
+.path-badge.support {
+  background: rgba(56, 189, 248, 0.15);
+  color: var(--cyan);
 }
 
 .path-condition {
@@ -1065,8 +1069,11 @@ img, svg { display: block; max-width: 100%; }
   margin-bottom: 4px;
 }
 
-.condition-stars.shield {
-  color: var(--gold);
+.condition-stars.shield,
+.condition-stars.support {
+  color: var(--cyan);
+  font-size: 13px;
+  letter-spacing: 4px;
 }
 
 .path-condition h4 {
@@ -1132,13 +1139,15 @@ img, svg { display: block; max-width: 100%; }
   color: var(--ink);
 }
 
-.path-step-row.highlight-row.shield {
-  background: rgba(245, 158, 11, 0.08);
-  border-color: rgba(245, 158, 11, 0.3);
+.path-step-row.highlight-row.shield,
+.path-step-row.highlight-row.support {
+  background: rgba(56, 189, 248, 0.08);
+  border-color: rgba(56, 189, 248, 0.3);
 }
 
-.path-step-row.highlight-row.shield .step-bullet {
-  background: var(--gold);
+.path-step-row.highlight-row.shield .step-bullet,
+.path-step-row.highlight-row.support .step-bullet {
+  background: var(--cyan);
   color: var(--ink);
 }
 
@@ -1165,7 +1174,8 @@ img, svg { display: block; max-width: 100%; }
 }
 
 .path-metric-bar.positive .metric-val { color: var(--emerald); }
-.path-metric-bar.shield .metric-val { color: var(--gold); }
+.path-metric-bar.shield .metric-val,
+.path-metric-bar.support .metric-val { color: var(--cyan); }
 
 .path-metric-bar .metric-sub {
   font-size: 11px;
@@ -1630,9 +1640,10 @@ img, svg { display: block; max-width: 100%; }
   border: 1px solid rgba(16, 185, 129, 0.25);
 }
 
-.sim-flow-result.shield-route {
-  background: rgba(244, 63, 94, 0.08);
-  border: 1px solid rgba(244, 63, 94, 0.25);
+.sim-flow-result.shield-route,
+.sim-flow-result.support-route {
+  background: rgba(56, 189, 248, 0.08);
+  border: 1px solid rgba(56, 189, 248, 0.25);
 }
 
 .sim-flow-result h6 { font-size: 13px; font-weight: 700; margin-bottom: 4px; }

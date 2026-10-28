@@ -277,7 +277,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const raw = manifestoText.textContent.trim();
     const words = raw.split(/\s+/);
     manifestoText.innerHTML = words.map(w => {
-      const isAccent = ['5-star', 'genuine', 'trust', 'private', 'problems', 'sales'].some(k => w.toLowerCase().includes(k));
+      const isAccent = ['5-star', 'genuine', 'trust', 'social', 'vip', 'loyalty', 'sales', 'growth'].some(k => w.toLowerCase().includes(k));
       return `<span class="word ${isAccent ? 'accent-target' : ''}">${w} </span>`;
     }).join('');
 
@@ -342,14 +342,14 @@ document.addEventListener('DOMContentLoaded', () => {
     if (rating >= 4) {
       simResultBox.className = 'sim-flow-result google-route';
       simResultBox.innerHTML = `
-        <h6 style="color:var(--emerald);">✓ 4–5 Stars: Sent to Google</h6>
-        <p>Happy customer is taken straight to Google Maps to post public 5 stars in seconds.</p>
+        <h6 style="color:var(--emerald);">★ 5-Star Reviews: Sent to Google & Amazon</h6>
+        <p>Happy customer publishes public 5-star reviews in 5 seconds, boosting your sales and ranking.</p>
       `;
     } else {
-      simResultBox.className = 'sim-flow-result shield-route';
+      simResultBox.className = 'sim-flow-result support-route';
       simResultBox.innerHTML = `
-        <h6 style="color:var(--ruby);">🛡️ 1–3 Stars: Caught Privately</h6>
-        <p>Complaint sent to your private phone so you fix it with zero public harm.</p>
+        <h6 style="color:var(--cyan);">💬 1-on-1 VIP Support Connected</h6>
+        <p>Customer connects directly to your private WhatsApp for fast, personal care that builds brand loyalty.</p>
       `;
     }
   };
