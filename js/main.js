@@ -342,7 +342,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (rating >= 4) {
       simResultBox.className = 'sim-flow-result google-route';
       simResultBox.innerHTML = `
-        <h6 style="color:var(--emerald);">★ 5-Star Reviews: Sent to Google & Amazon</h6>
+        <h6 style="color:var(--emerald);">★ 5-Star Reviews: Google Maps, Amazon, Trustpilot & Facebook</h6>
         <p>Happy customer publishes public 5-star reviews in 5 seconds, boosting your sales and ranking.</p>
       `;
     } else {
@@ -410,7 +410,7 @@ document.addEventListener('DOMContentLoaded', () => {
     leadForm.addEventListener('submit', (e) => {
       e.preventDefault();
       const brandName = document.getElementById('brandName')?.value || 'Our Brand';
-      const platform = document.getElementById('platformSelect')?.value || 'Amazon & Google';
+      const platform = document.getElementById('platformSelect')?.value || 'All 4 Platforms';
       const phone = document.getElementById('clientPhone')?.value || '';
 
       const message = `Hello Rapid Review Team,\n\nI would like to start a Reputation Campaign for *${brandName}*.\n- Platform: ${platform}\n- WhatsApp Contact: ${phone}\n\nPlease share campaign timeline and pricing.`;
