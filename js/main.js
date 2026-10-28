@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* ============================================================
-     3. HALFTONE CANVAS IN HERO (Rich, Interactive Wave Grid with Auto Mobile Drift)
+     3. HALFTONE CANVAS IN HERO (Auto-Drifting Ambient Wave System)
      ============================================================ */
   const canvas = document.getElementById('halftone');
   if (canvas) {
@@ -87,7 +87,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let width = 0, height = 0;
     const isMobile = window.innerWidth < 768;
     const dpr = Math.min(window.devicePixelRatio || 1, isMobile ? 1.5 : 1.75);
-    let mx = -9999, my = -9999;
     let time = 0;
     let isVisible = true;
     let isRunning = true;
@@ -102,34 +101,6 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas, { passive: true });
-
-    const heroSection = canvas.parentElement;
-    if (heroSection) {
-      heroSection.addEventListener('mousemove', (e) => {
-        const rect = canvas.getBoundingClientRect();
-        mx = e.clientX - rect.left;
-        my = e.clientY - rect.top;
-      }, { passive: true });
-
-      heroSection.addEventListener('mouseleave', () => {
-        mx = -9999;
-        my = -9999;
-      });
-
-      // Mobile Touch Interaction
-      heroSection.addEventListener('touchmove', (e) => {
-        if (e.touches && e.touches[0]) {
-          const rect = canvas.getBoundingClientRect();
-          mx = e.touches[0].clientX - rect.left;
-          my = e.touches[0].clientY - rect.top;
-        }
-      }, { passive: true });
-
-      heroSection.addEventListener('touchend', () => {
-        mx = -9999;
-        my = -9999;
-      }, { passive: true });
-    }
 
     const canvasObserver = new IntersectionObserver((entries) => {
       isVisible = entries[0].isIntersecting;
@@ -146,17 +117,12 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      time += 0.012;
+      time += 0.014;
       ctx.clearRect(0, 0, width, height);
 
-      // On mobile or when mouse is idle, smoothly auto-glide the interactive center
-      let activeX = mx;
-      let activeY = my;
-      if (activeX < 0 || activeY < 0) {
-        // Continuous smooth figure-8 floating aura
-        activeX = (width * 0.5) + Math.sin(time * 0.75) * (width * 0.35);
-        activeY = (height * 0.45) + Math.cos(time * 0.5) * (height * 0.25);
-      }
+      // Smooth auto-gliding organic focal point that continuously travels across the screen
+      const activeX = (width * 0.5) + Math.sin(time * 0.8) * (width * 0.38);
+      const activeY = (height * 0.45) + Math.cos(time * 0.55) * (height * 0.28);
 
       for (let y = gap / 2; y < height; y += gap) {
         for (let x = gap / 2; x < width; x += gap) {
@@ -166,14 +132,14 @@ document.addEventListener('DOMContentLoaded', () => {
           const dx = x - activeX;
           const dy = y - activeY;
           const dist = Math.hypot(dx, dy);
-          const mouseEffect = Math.max(0, 1 - dist / (isMobile ? 140 : 180));
+          const focalEffect = Math.max(0, 1 - dist / (isMobile ? 160 : 210));
 
-          const radius = Math.max(0.6, (wave * 0.5 + 0.5) * 2.2 + mouseEffect * (isMobile ? 2.6 : 3.4));
-          const alpha = Math.min(0.85, 0.12 + (wave * 0.5 + 0.5) * 0.25 + mouseEffect * 0.55);
+          const radius = Math.max(0.65, (wave * 0.5 + 0.5) * 2.3 + focalEffect * 3.6);
+          const alpha = Math.min(0.88, 0.12 + (wave * 0.5 + 0.5) * 0.24 + focalEffect * 0.58);
 
           ctx.beginPath();
           ctx.arc(x, y, radius, 0, Math.PI * 2);
-          if (mouseEffect > 0.1) {
+          if (focalEffect > 0.08) {
             ctx.fillStyle = `rgba(56, 189, 248, ${alpha})`;
           } else {
             ctx.fillStyle = `rgba(125, 151, 168, ${alpha})`;
@@ -353,7 +319,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* ============================================================
-     7. ROI CALCULATOR
+     7. ACCORDION FAQ (Only 1 Question Open at a Time)
+     ============================================================ */
+  const faqItems = document.querySelectorAll('.faq-item');
+  faqItems.forEach((item) => {
+    const summary = item.querySelector('.faq-summary');
+    if (summary) {
+      summary.addEventListener('click', (e) => {
+        e.preventDefault(); // Control state manually for fluid height & mutual exclusivity
+        const isOpen = item.hasAttribute('open');
+
+        // Close all other items
+        faqItems.forEach((other) => {
+          if (other !== item) {
+            other.removeAttribute('open');
+          }
+        });
+
+        if (isOpen) {
+          item.removeAttribute('open');
+        } else {
+          item.setAttribute('open', '');
+        }
+      });
+    }
+  });
+
+
+  /* ============================================================
+     8. ROI CALCULATOR
      ============================================================ */
   const rangeRevenue = document.getElementById('rangeRevenue');
   const rangeRating = document.getElementById('rangeRating');
