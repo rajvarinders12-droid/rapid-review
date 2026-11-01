@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* ============================================================
-     3. HALFTONE CANVAS IN HERO (Auto-Drifting Ambient Wave System)
+     3. HALFTONE CANVAS IN HERO (Axuvo Halftone Dot-Matrix Pattern)
      ============================================================ */
   const canvas = document.getElementById('halftone');
   if (canvas) {
@@ -87,10 +87,11 @@ document.addEventListener('DOMContentLoaded', () => {
     let width = 0, height = 0;
     const isMobile = window.innerWidth < 768;
     const dpr = Math.min(window.devicePixelRatio || 1, isMobile ? 1.5 : 1.75);
+    let mx = -9999, my = -9999;
     let time = 0;
     let isVisible = true;
     let isRunning = true;
-    const gap = isMobile ? 22 : 16;
+    const gap = isMobile ? 20 : 16;
 
     const resizeCanvas = () => {
       width = canvas.offsetWidth;
@@ -101,6 +102,23 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas, { passive: true });
+
+    // Desktop interactive mouse glow — strictly NO moving circle on mobile
+    if (!isMobile) {
+      const heroSection = canvas.parentElement;
+      if (heroSection) {
+        heroSection.addEventListener('mousemove', (e) => {
+          const rect = canvas.getBoundingClientRect();
+          mx = e.clientX - rect.left;
+          my = e.clientY - rect.top;
+        }, { passive: true });
+
+        heroSection.addEventListener('mouseleave', () => {
+          mx = -9999;
+          my = -9999;
+        });
+      }
+    }
 
     const canvasObserver = new IntersectionObserver((entries) => {
       isVisible = entries[0].isIntersecting;
@@ -117,32 +135,43 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      time += 0.014;
+      // Smooth slow wave
+      time += isMobile ? 0.005 : 0.01;
       ctx.clearRect(0, 0, width, height);
 
-      // Smooth auto-gliding organic focal point that continuously travels across the screen
-      const activeX = (width * 0.5) + Math.sin(time * 0.8) * (width * 0.38);
-      const activeY = (height * 0.45) + Math.cos(time * 0.55) * (height * 0.28);
+      // Stationary radial focus point (like Axuvo's upper-center bright halftone fan)
+      const centerX = width * 0.5;
+      const centerY = height * 0.35;
+      const maxSpotDist = Math.max(width, height) * 0.65;
 
       for (let y = gap / 2; y < height; y += gap) {
         for (let x = gap / 2; x < width; x += gap) {
-          const wave = Math.sin(x * 0.007 + time * 1.5) * Math.cos(y * 0.009 - time) * 0.5 +
-                       Math.sin((x + y) * 0.005 + time * 0.8) * 0.5;
+          // Stationary radial falloff (creates the static Axuvo halftone texture)
+          const distToCenter = Math.hypot(x - centerX, y - centerY);
+          const spotFactor = Math.max(0, 1 - distToCenter / maxSpotDist);
 
-          const dx = x - activeX;
-          const dy = y - activeY;
-          const dist = Math.hypot(dx, dy);
-          const focalEffect = Math.max(0, 1 - dist / (isMobile ? 160 : 210));
+          // Gentle ambient wave
+          const wave = Math.sin(x * 0.006 + time) * Math.cos(y * 0.006 - time * 0.8) * 0.35;
 
-          const radius = Math.max(0.65, (wave * 0.5 + 0.5) * 2.3 + focalEffect * 3.6);
-          const alpha = Math.min(0.88, 0.12 + (wave * 0.5 + 0.5) * 0.24 + focalEffect * 0.58);
+          // Desktop-only interactive mouse focus
+          let mouseEffect = 0;
+          if (!isMobile && mx > 0 && my > 0) {
+            const mDist = Math.hypot(x - mx, y - my);
+            mouseEffect = Math.max(0, 1 - mDist / 220);
+          }
+
+          const baseRadius = 0.85 + (spotFactor * 2.1) + (wave * 0.4) + (mouseEffect * 3.2);
+          const radius = Math.max(0.6, baseRadius);
+
+          const alpha = Math.min(0.85, 0.09 + (spotFactor * 0.38) + (mouseEffect * 0.55));
 
           ctx.beginPath();
           ctx.arc(x, y, radius, 0, Math.PI * 2);
-          if (focalEffect > 0.08) {
+          if (mouseEffect > 0.08) {
             ctx.fillStyle = `rgba(56, 189, 248, ${alpha})`;
           } else {
-            ctx.fillStyle = `rgba(125, 151, 168, ${alpha})`;
+            // Axuvo's off-white / bone halftone dot color
+            ctx.fillStyle = `rgba(225, 230, 235, ${alpha})`;
           }
           ctx.fill();
         }

@@ -9,10 +9,10 @@
   <meta name="description" content="Rapid Review is an award-winning review growth platform. Boost ratings, search ranking, and sales across Google Maps, Amazon, Trustpilot, and Facebook with verified Indian buyers.">
   <meta name="keywords" content="Google Maps reviews, Amazon reviews, Trustpilot ratings, Facebook recommendations, brand reputation, 5-star ratings, Rapid Review">
 
-  <!-- Fonts: Archivo & Space Mono -->
+  <!-- Fonts: Syne (Display), Plus Jakarta Sans (Body), Space Mono (Studio Monospace) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@700;800&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -101,24 +101,25 @@
     </defs>
   </svg>
 
-  <!-- Clean Floating Navbar -->
+  <!-- Axuvo-Inspired Clean Floating Navbar -->
   <nav class="nav-bar" id="navbar">
     <a href="#hero" class="nav-logo hoverable" data-label="Top">
-      <div class="nav-logo-badge">RR</div>
-      RAPID REVIEW
+      <span class="nav-sparkle">✦</span>
+      <span class="nav-logo-text">Rapid Review</span>
     </a>
 
     <div class="nav-links">
-      <a href="#award" class="nav-link hoverable" data-label="Award">Award</a>
-      <a href="#services" class="nav-link hoverable" data-label="Platforms">Platforms</a>
-      <a href="#how" class="nav-link hoverable" data-label="Demo">How It Works</a>
+      <a href="#how" class="nav-link hoverable" data-label="Process">How It Works</a>
+      <a href="#services" class="nav-link hoverable" data-label="Platforms">Services</a>
+      <a href="#about" class="nav-link hoverable" data-label="Journey">Journey</a>
       <a href="#cases" class="nav-link hoverable" data-label="Results">Results</a>
       <a href="#faq" class="nav-link hoverable" data-label="FAQ">FAQ</a>
+      <a href="#contact" class="nav-link hoverable" data-label="Contact">Contact</a>
     </div>
 
     <div class="nav-right">
-      <a href="#contact" class="cta-btn hoverable" data-label="Talk">
-        Get Started
+      <a href="#contact" class="nav-pill-btn hoverable" data-label="Start">
+        Start A Project
       </a>
       <button class="nav-toggle hoverable" id="navToggle" aria-label="Open Menu" data-label="Menu">
         <span></span><span></span><span></span>
@@ -129,122 +130,111 @@
   <!-- Mobile Menu Drawer -->
   <div class="mobile-drawer" id="mobileDrawer">
     <div class="mobile-nav-links">
-      <a href="#award" class="mobile-nav-link">Award Winner</a>
-      <a href="#services" class="mobile-nav-link">Platforms</a>
       <a href="#how" class="mobile-nav-link">How It Works</a>
+      <a href="#services" class="mobile-nav-link">Services</a>
+      <a href="#about" class="mobile-nav-link">Journey</a>
       <a href="#cases" class="mobile-nav-link">Results</a>
       <a href="#faq" class="mobile-nav-link">FAQ</a>
       <a href="#contact" class="mobile-nav-link">Contact</a>
     </div>
     <div class="mobile-drawer-foot">
-      <a href="https://wa.me/917341138757?text=Hi%20Rapid%20Review,%20I'd%20like%20to%20get%20more%20reviews." class="cta-btn cta-btn-cyan" style="justify-content:center; width:100%;">
+      <a href="#contact" class="cta-btn cta-btn-cyan" style="justify-content:center; width:100%; margin-bottom: 10px;">
+        Start A Project
+      </a>
+      <a href="https://wa.me/917341138757?text=Hi%20Rapid%20Review,%20I'd%20like%20to%20get%20more%20reviews." target="_blank" rel="noopener" class="cta-btn cta-btn-outline" style="justify-content:center; width:100%;">
         Chat on WhatsApp
       </a>
     </div>
   </div>
 
-  <!-- HERO SECTION (Balanced, Rich, 100vh with 3 stats on main page) -->
+  <!-- HERO SECTION (Axuvo-Inspired Studio Hero: Spacious, Bold Typography, 100vh) -->
   <header class="hero" id="hero">
     <canvas id="halftone"></canvas>
     <div class="hero-bg-fx" aria-hidden="true">
       <div class="hero-beam"></div>
       <div class="hero-glow hero-glow-1"></div>
-      <div class="hero-glow hero-glow-2"></div>
-      <div class="hero-glow hero-glow-3"></div>
       <div class="hero-grid-overlay"></div>
-      <div class="hero-floating-ring hero-ring-1"></div>
-      <div class="hero-floating-ring hero-ring-2"></div>
     </div>
 
-    <div class="hero-content rv">
-      <div class="hero-pill">
-        <span class="hero-live-beacon"></span>
-        Awarded India’s Best Reputation Brand · IDA 2024
+    <div class="hero-wrap shell">
+      <!-- Micro-Metadata Studio Line -->
+      <div class="hero-meta-tag rv">
+        <span>• DESIGN STUDIO</span>
+        <span>• AI REVIEW SYSTEMS</span>
+        <span>• WEBSITES •</span>
       </div>
 
-      <h1 class="hero-title" aria-label="Rapid Review">
+      <!-- Giant Axuvo-Style Statement Wordmark -->
+      <h1 class="hero-title rv" aria-label="Rapid Review">
         <span class="ch">R</span><span class="ch">A</span><span class="ch">P</span><span class="ch">I</span><span class="ch">D</span>
         &nbsp;
         <span class="ch">R</span><span class="ch">E</span><span class="ch">V</span><span class="ch">I</span><span class="ch">E</span><span class="ch">W</span>
       </h1>
 
-      <p class="hero-sub">
-        Boost your ratings and multiply sales across <strong>Google Maps, Amazon, Trustpilot, and Facebook</strong>. Verified real buyers, zero bots, and zero inventory loss.
-      </p>
-
-      <!-- Trust Reassurance Highlights -->
-      <div class="hero-trust-bar">
-        <span class="hero-trust-item"><svg viewBox="0 0 24 24"><use href="#check"/></svg> Verified Real Buyers</span>
-        <span>•</span>
-        <span class="hero-trust-item"><svg viewBox="0 0 24 24"><use href="#check"/></svg> Zero Inventory Loss</span>
-        <span>•</span>
-        <span class="hero-trust-item"><svg viewBox="0 0 24 24"><use href="#check"/></svg> 100% Policy Safe</span>
-      </div>
-
-      <div class="hero-actions">
-        <a href="#contact" class="cta-btn cta-btn-cyan hoverable" data-label="Start">
-          Get Started
-          <svg width="12" height="12"><use href="#arrow"/></svg>
-        </a>
-        <a href="#how" class="cta-btn cta-btn-outline hoverable" data-label="Demo">
-          See How It Works
-        </a>
-      </div>
-
-      <!-- The 3 Key Stats (Showcased on Main Page) -->
-      <div class="hero-stats-capsule">
-        <div class="hero-stat-item">
-          <div class="hero-stat-icon-wrap">
-            <svg width="14" height="14" fill="#f59e0b"><use href="#star"/></svg>
-          </div>
-          <div>
-            <div class="hero-stat-val">4.9 ★</div>
-            <div class="hero-stat-lbl">Client Rating</div>
+      <!-- Axuvo Split Bottom Row -->
+      <div class="hero-bottom-row rv">
+        <div class="hero-desc-col">
+          <p class="hero-studio-desc">
+            We build AI-powered Google review funnels and websites that refuse to be ignored. Reputation, engineered. Interfaces, obsessed over.
+          </p>
+          <div class="hero-action-pills">
+            <a href="#contact" class="hero-pill-btn hero-pill-solid hoverable" data-label="Start">
+              Start A Project <svg width="12" height="12"><use href="#arrow"/></svg>
+            </a>
+            <a href="https://wa.me/917341138757?text=Hi%20Rapid%20Review,%20I'd%20like%20to%20get%20more%20reviews." target="_blank" rel="noopener" class="hero-pill-btn hero-pill-ghost hoverable" data-label="WhatsApp">
+              Chat on WhatsApp
+            </a>
           </div>
         </div>
 
-        <div class="hero-stat-divider"></div>
-
-        <div class="hero-stat-item">
-          <div class="hero-stat-icon-wrap">
-            <svg width="14" height="14" stroke="var(--cyan)" fill="none" viewBox="0 0 24 24" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-          </div>
-          <div>
-            <div class="hero-stat-val">25,000+</div>
-            <div class="hero-stat-lbl">Real Reviews</div>
-          </div>
-        </div>
-
-        <div class="hero-stat-divider"></div>
-
-        <div class="hero-stat-item">
-          <div class="hero-stat-icon-wrap">
-            <svg width="14" height="14" stroke="var(--emerald)" fill="none" viewBox="0 0 24 24" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          </div>
-          <div>
-            <div class="hero-stat-val">+233%</div>
-            <div class="hero-stat-lbl">Avg Sales Lift</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Platform Compatibility Ribbon -->
-      <div class="hero-platforms-row">
-        <span>Supported Platforms:</span>
-        <div class="hero-platforms-list">
-          <span class="hero-platform-badge"><svg viewBox="0 0 24 24"><use href="#icon-gmaps"/></svg> Google Maps</span>
-          <span class="hero-platform-badge"><svg viewBox="0 0 24 24"><use href="#icon-amazon"/></svg> Amazon</span>
-          <span class="hero-platform-badge"><svg viewBox="0 0 24 24"><use href="#icon-trustpilot"/></svg> Trustpilot</span>
-          <span class="hero-platform-badge"><svg viewBox="0 0 24 24"><use href="#icon-facebook"/></svg> Facebook</span>
+        <div class="hero-scroll-col">
+          <a href="#stats-strip" class="hero-scroll-link hoverable" data-label="Scroll">
+            .SCROLL TO EXPLORE
+          </a>
         </div>
       </div>
     </div>
-
-    <a href="#about" class="scroll-indicator hoverable" aria-label="Scroll to explore" data-label="Scroll">
-      <span class="scroll-line"></span>
-      <span class="scroll-lbl">Scroll</span>
-    </a>
   </header>
+
+  <!-- HERO STATS & PLATFORMS STRIP (Right below the spacious first page fold) -->
+  <section class="hero-strip" id="stats-strip">
+    <div class="shell">
+      <div class="hero-strip-grid rv">
+        <div class="hero-strip-stat">
+          <div class="hero-strip-num">4.9 ★</div>
+          <div class="hero-strip-lbl">Verified Client Rating</div>
+        </div>
+        <div class="hero-strip-stat">
+          <div class="hero-strip-num">25,000+</div>
+          <div class="hero-strip-lbl">Real Indian Reviews</div>
+        </div>
+        <div class="hero-strip-stat">
+          <div class="hero-strip-num">+233%</div>
+          <div class="hero-strip-lbl">Average Sales Lift</div>
+        </div>
+        <div class="hero-strip-badge">
+          <div class="hero-strip-badge-icon">
+            <svg viewBox="0 0 24 24"><use href="#trophy"/></svg>
+          </div>
+          <div>
+            <div class="hero-strip-badge-title">IDA 2024 Winner</div>
+            <div class="hero-strip-lbl">India's Best Reputation Brand</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Supported Platforms Bar -->
+      <div class="hero-platforms-bar rv">
+        <span class="hero-platforms-title">ENGINEERED FOR:</span>
+        <div class="hero-platforms-badges">
+          <span class="platform-chip"><svg viewBox="0 0 24 24"><use href="#icon-gmaps"/></svg> Google Maps</span>
+          <span class="platform-chip"><svg viewBox="0 0 24 24"><use href="#icon-amazon"/></svg> Amazon</span>
+          <span class="platform-chip"><svg viewBox="0 0 24 24"><use href="#icon-trustpilot"/></svg> Trustpilot</span>
+          <span class="platform-chip"><svg viewBox="0 0 24 24"><use href="#icon-facebook"/></svg> Facebook</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- MOVING TICKER (Only visible AFTER small scroll) -->
   <div class="marquee-band" aria-hidden="true">
@@ -308,7 +298,7 @@
       </div>
 
       <div class="growth-img-showcase-wrap">
-        <img src="assets/growth.png" alt="Rapid Review 5-Star Growth Journey Flow" class="growth-showcase-img" loading="lazy">
+        <img src="assets/growth.png?v=2" alt="Rapid Review 5-Star Growth Journey Flow" class="growth-showcase-img" loading="lazy">
       </div>
     </div>
 
