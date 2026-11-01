@@ -79,109 +79,77 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* ============================================================
-     3. HALFTONE CANVAS IN HERO (Axuvo Halftone Dot-Matrix Pattern)
+     3. HALFTONE CANVAS IN HERO (Axuvo Signature 1:1 Halftone)
      ============================================================ */
-  const canvas = document.getElementById('halftone');
-  if (canvas) {
-    const ctx = canvas.getContext('2d');
-    let width = 0, height = 0;
-    const isMobile = window.innerWidth < 768;
-    const dpr = Math.min(window.devicePixelRatio || 1, isMobile ? 1.5 : 1.75);
-    let mx = -9999, my = -9999;
-    let time = 0;
-    let isVisible = true;
-    let isRunning = true;
-    const gap = isMobile ? 20 : 16;
+  function initHalftone(canvasId, mouseReactive) {
+    const cv = document.getElementById(canvasId);
+    if (!cv) return;
+    const ctx = cv.getContext('2d');
+    let W = 0, H = 0, dpr = Math.min(window.devicePixelRatio || 1, 2);
+    let mx = -999, my = -999, t = 0, visible = true, running = true;
+    const isMobile = window.innerWidth < 760;
+    const gap = isMobile ? 18 : 14;
 
-    const resizeCanvas = () => {
-      width = canvas.offsetWidth;
-      height = canvas.offsetHeight;
-      canvas.width = width * dpr;
-      canvas.height = height * dpr;
+    function size() {
+      W = cv.offsetWidth;
+      H = cv.offsetHeight;
+      cv.width = W * dpr;
+      cv.height = H * dpr;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    };
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas, { passive: true });
+    }
+    size();
+    window.addEventListener('resize', size, { passive: true });
 
-    // Desktop interactive mouse glow — strictly NO moving circle on mobile
-    if (!isMobile) {
-      const heroSection = canvas.parentElement;
-      if (heroSection) {
-        heroSection.addEventListener('mousemove', (e) => {
-          const rect = canvas.getBoundingClientRect();
-          mx = e.clientX - rect.left;
-          my = e.clientY - rect.top;
+    if (mouseReactive && !isMobile) {
+      const heroParent = cv.parentElement;
+      if (heroParent) {
+        heroParent.addEventListener('mousemove', e => {
+          const r = cv.getBoundingClientRect();
+          mx = e.clientX - r.left;
+          my = e.clientY - r.top;
         }, { passive: true });
-
-        heroSection.addEventListener('mouseleave', () => {
-          mx = -9999;
-          my = -9999;
-        });
+        heroParent.addEventListener('mouseleave', () => { mx = -999; my = -999; });
       }
     }
 
-    const canvasObserver = new IntersectionObserver((entries) => {
-      isVisible = entries[0].isIntersecting;
-      if (isVisible && !isRunning) {
-        isRunning = true;
-        requestAnimationFrame(drawCanvas);
-      }
-    }, { threshold: 0.05 });
-    canvasObserver.observe(canvas);
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(es => {
+        visible = es[0].isIntersecting;
+        if (visible && !running) { running = true; draw(); }
+      }, { threshold: .01 }).observe(cv);
+    }
 
-    const drawCanvas = () => {
-      if (!isVisible) {
-        isRunning = false;
-        return;
-      }
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-      // Smooth slow wave
-      time += isMobile ? 0.005 : 0.01;
-      ctx.clearRect(0, 0, width, height);
-
-      // Stationary radial focus point (like Axuvo's upper-center bright halftone fan)
-      const centerX = width * 0.5;
-      const centerY = height * 0.35;
-      const maxSpotDist = Math.max(width, height) * 0.65;
-
-      for (let y = gap / 2; y < height; y += gap) {
-        for (let x = gap / 2; x < width; x += gap) {
-          // Stationary radial falloff (creates the static Axuvo halftone texture)
-          const distToCenter = Math.hypot(x - centerX, y - centerY);
-          const spotFactor = Math.max(0, 1 - distToCenter / maxSpotDist);
-
-          // Gentle ambient wave
-          const wave = Math.sin(x * 0.006 + time) * Math.cos(y * 0.006 - time * 0.8) * 0.35;
-
-          // Desktop-only interactive mouse focus
-          let mouseEffect = 0;
-          if (!isMobile && mx > 0 && my > 0) {
-            const mDist = Math.hypot(x - mx, y - my);
-            mouseEffect = Math.max(0, 1 - mDist / 220);
+    function draw() {
+      if (!visible) { running = false; return; }
+      t += .008;
+      ctx.clearRect(0, 0, W, H);
+      for (let y = gap / 2; y < H; y += gap) {
+        for (let x = gap / 2; x < W; x += gap) {
+          let v = Math.sin(x * .006 + t * 1.4) * Math.cos(y * .008 - t) * .5
+               + Math.sin((x + y) * .004 + t * .7) * .5;
+          v = (v + 1) / 2;
+          if (mx > -500) {
+            const d = Math.hypot(x - mx, y - my);
+            v += Math.max(0, 1 - d / 220) * .9;
           }
-
-          const baseRadius = 0.85 + (spotFactor * 2.1) + (wave * 0.4) + (mouseEffect * 3.2);
-          const radius = Math.max(0.6, baseRadius);
-
-          const alpha = Math.min(0.85, 0.09 + (spotFactor * 0.38) + (mouseEffect * 0.55));
-
+          v = Math.min(1, Math.max(0, v));
+          const r = v * v * (gap * .46);
+          if (r < .4) continue;
+          const blue = Math.sin(x * .002 + t * .5) > 0.55;
+          ctx.fillStyle = blue ? `rgba(125,151,168,${.25 + v * .6})` : `rgba(233,229,218,${.12 + v * .75})`;
           ctx.beginPath();
-          ctx.arc(x, y, radius, 0, Math.PI * 2);
-          if (mouseEffect > 0.08) {
-            ctx.fillStyle = `rgba(56, 189, 248, ${alpha})`;
-          } else {
-            // Axuvo's off-white / bone halftone dot color
-            ctx.fillStyle = `rgba(225, 230, 235, ${alpha})`;
-          }
+          ctx.arc(x, y, r, 0, Math.PI * 2);
           ctx.fill();
         }
       }
-
-      requestAnimationFrame(drawCanvas);
-    };
-
-    requestAnimationFrame(drawCanvas);
+      if (reduced) { running = false; return; }
+      requestAnimationFrame(draw);
+    }
+    draw();
   }
+  initHalftone('halftone', true);
 
 
   /* ============================================================

@@ -9,10 +9,10 @@
   <meta name="description" content="Rapid Review is an award-winning review growth platform. Boost ratings, search ranking, and sales across Google Maps, Amazon, Trustpilot, and Facebook with verified Indian buyers.">
   <meta name="keywords" content="Google Maps reviews, Amazon reviews, Trustpilot ratings, Facebook recommendations, brand reputation, 5-star ratings, Rapid Review">
 
-  <!-- Fonts: Syne (Display), Plus Jakarta Sans (Body), Space Mono (Studio Monospace) -->
+  <!-- Fonts: Archivo & Space Mono (Exact Match to https://axuvo.in) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -25,6 +25,10 @@
   <!-- SVG Global Symbol Definitions -->
   <svg width="0" height="0" style="position:absolute; display:none;">
     <defs>
+      <!-- Spark Star Symbol (Signature Axuvo Star) -->
+      <symbol id="spark" viewBox="0 0 100 100">
+        <path d="M50 0 C55 32 68 45 100 50 C68 55 55 68 50 100 C45 68 32 55 0 50 C32 45 45 32 50 0 Z"/>
+      </symbol>
       <!-- Star Symbol -->
       <symbol id="star" viewBox="0 0 24 24">
         <path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7L12 17.3 5.8 20.9l1.6-7L2 9.2l7.1-.6z"/>
@@ -101,30 +105,27 @@
     </defs>
   </svg>
 
-  <!-- Axuvo-Inspired Clean Floating Navbar -->
-  <nav class="nav-bar" id="navbar">
-    <a href="#hero" class="nav-logo hoverable" data-label="Top">
-      <span class="nav-sparkle">✦</span>
-      <span class="nav-logo-text">Rapid Review</span>
+  <!-- nav (Axuvo exact signature) -->
+  <nav class="nav" id="navbar">
+    <a href="#top" class="logo hoverable" data-label="Top">
+      <svg class="spark" viewBox="0 0 100 100"><use href="#spark"/></svg>
+      Rapid Review
     </a>
 
     <div class="nav-links">
-      <a href="#how" class="nav-link hoverable" data-label="Process">How It Works</a>
-      <a href="#services" class="nav-link hoverable" data-label="Platforms">Services</a>
-      <a href="#about" class="nav-link hoverable" data-label="Journey">Journey</a>
-      <a href="#cases" class="nav-link hoverable" data-label="Results">Results</a>
-      <a href="#faq" class="nav-link hoverable" data-label="FAQ">FAQ</a>
-      <a href="#contact" class="nav-link hoverable" data-label="Contact">Contact</a>
+      <a href="#how" class="hoverable" data-label="Go">How It Works</a>
+      <a href="#services" class="hoverable" data-label="Go">Services</a>
+      <a href="#about" class="hoverable" data-label="Go">Journey</a>
+      <a href="#cases" class="hoverable" data-label="Go">Results</a>
+      <a href="#faq" class="hoverable" data-label="Go">FAQ</a>
+      <a href="#contact" class="hoverable" data-label="Go">Contact</a>
     </div>
 
-    <div class="nav-right">
-      <a href="#contact" class="nav-pill-btn hoverable" data-label="Start">
-        Start A Project
-      </a>
-      <button class="nav-toggle hoverable" id="navToggle" aria-label="Open Menu" data-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
+    <a href="#contact" class="cta-pill hoverable" data-label="Hi">Start a project</a>
+
+    <button class="nav-toggle hoverable" id="navToggle" aria-label="Menu" data-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
 
   <!-- Mobile Menu Drawer -->
@@ -147,115 +148,65 @@
     </div>
   </div>
 
-  <!-- HERO SECTION (Axuvo-Inspired Studio Hero: Spacious, Bold Typography, 100vh) -->
-  <header class="hero" id="hero">
+  <!-- hero (Axuvo signature layout) -->
+  <header class="hero" id="top">
     <canvas id="halftone"></canvas>
-    <div class="hero-bg-fx" aria-hidden="true">
-      <div class="hero-beam"></div>
-      <div class="hero-glow hero-glow-1"></div>
-      <div class="hero-grid-overlay"></div>
-    </div>
-
-    <div class="hero-wrap shell">
-      <!-- Micro-Metadata Studio Line -->
-      <div class="hero-meta-tag rv">
-        <span>• DESIGN STUDIO</span>
-        <span>• AI REVIEW SYSTEMS</span>
-        <span>• WEBSITES •</span>
+    <div class="hero-inner">
+      <div class="hero-eyebrow">
+        <span class="dot"></span> Design studio · AI review systems · Websites
       </div>
 
-      <!-- Giant Axuvo-Style Statement Wordmark -->
-      <h1 class="hero-title rv" aria-label="Rapid Review">
-        <span class="ch">R</span><span class="ch">A</span><span class="ch">P</span><span class="ch">I</span><span class="ch">D</span>
-        &nbsp;
-        <span class="ch">R</span><span class="ch">E</span><span class="ch">V</span><span class="ch">I</span><span class="ch">E</span><span class="ch">W</span>
+      <h1 class="hero-title" id="heroTitle" aria-label="Rapid Review">
+        <span class="ch">R</span><span class="ch">A</span><span class="ch">P</span><span class="ch">I</span><span class="ch">D</span>&nbsp;<span class="ch">R</span><span class="ch">E</span><span class="ch">V</span><span class="ch">I</span><span class="ch">E</span><span class="ch">W</span>
       </h1>
 
-      <!-- Axuvo Split Bottom Row -->
-      <div class="hero-bottom-row rv">
-        <div class="hero-desc-col">
-          <p class="hero-studio-desc">
-            We build AI-powered Google review funnels and websites that refuse to be ignored. Reputation, engineered. Interfaces, obsessed over.
-          </p>
-          <div class="hero-action-pills">
-            <a href="#contact" class="hero-pill-btn hero-pill-solid hoverable" data-label="Start">
-              Start A Project <svg width="12" height="12"><use href="#arrow"/></svg>
-            </a>
-            <a href="https://wa.me/917341138757?text=Hi%20Rapid%20Review,%20I'd%20like%20to%20get%20more%20reviews." target="_blank" rel="noopener" class="hero-pill-btn hero-pill-ghost hoverable" data-label="WhatsApp">
-              Chat on WhatsApp
-            </a>
-          </div>
-        </div>
-
-        <div class="hero-scroll-col">
-          <a href="#stats-strip" class="hero-scroll-link hoverable" data-label="Scroll">
-            .SCROLL TO EXPLORE
-          </a>
-        </div>
+      <div class="hero-sub">
+        <p><strong>We build AI-powered Google review funnels and websites that refuse to be ignored.</strong> Reputation, engineered. Interfaces, obsessed over.</p>
+        <div class="hero-scroll"><span class="bar"></span> Scroll to explore</div>
       </div>
     </div>
   </header>
 
-  <!-- HERO STATS & PLATFORMS STRIP (Right below the spacious first page fold) -->
-  <section class="hero-strip" id="stats-strip">
-    <div class="shell">
-      <div class="hero-strip-grid rv">
-        <div class="hero-strip-stat">
-          <div class="hero-strip-num">4.9 ★</div>
-          <div class="hero-strip-lbl">Verified Client Rating</div>
-        </div>
-        <div class="hero-strip-stat">
-          <div class="hero-strip-num">25,000+</div>
-          <div class="hero-strip-lbl">Real Indian Reviews</div>
-        </div>
-        <div class="hero-strip-stat">
-          <div class="hero-strip-num">+233%</div>
-          <div class="hero-strip-lbl">Average Sales Lift</div>
-        </div>
-        <div class="hero-strip-badge">
-          <div class="hero-strip-badge-icon">
-            <svg viewBox="0 0 24 24"><use href="#trophy"/></svg>
-          </div>
-          <div>
-            <div class="hero-strip-badge-title">IDA 2024 Winner</div>
-            <div class="hero-strip-lbl">India's Best Reputation Brand</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Supported Platforms Bar -->
-      <div class="hero-platforms-bar rv">
-        <span class="hero-platforms-title">ENGINEERED FOR:</span>
-        <div class="hero-platforms-badges">
-          <span class="platform-chip"><svg viewBox="0 0 24 24"><use href="#icon-gmaps"/></svg> Google Maps</span>
-          <span class="platform-chip"><svg viewBox="0 0 24 24"><use href="#icon-amazon"/></svg> Amazon</span>
-          <span class="platform-chip"><svg viewBox="0 0 24 24"><use href="#icon-trustpilot"/></svg> Trustpilot</span>
-          <span class="platform-chip"><svg viewBox="0 0 24 24"><use href="#icon-facebook"/></svg> Facebook</span>
-        </div>
-      </div>
+  <!-- stats (Axuvo 4-column signature metrics strip) -->
+  <div class="stats" id="statsStrip">
+    <div class="stat">
+      <div class="n">4.9<em>★</em></div>
+      <div class="l">Client Rating</div>
     </div>
-  </section>
+    <div class="stat">
+      <div class="n">25<em>K+</em></div>
+      <div class="l">Real Indian Reviews</div>
+    </div>
+    <div class="stat">
+      <div class="n">+233<em>%</em></div>
+      <div class="l">Average Sales Lift</div>
+    </div>
+    <div class="stat">
+      <div class="n">IDA<em>'24</em></div>
+      <div class="l">Best Reputation Brand</div>
+    </div>
+  </div>
 
-  <!-- MOVING TICKER (Only visible AFTER small scroll) -->
-  <div class="marquee-band" aria-hidden="true">
-    <div class="marquee-track">
-      <div class="marquee-item">Google Maps Reviews <span class="marquee-sep">//</span></div>
-      <div class="marquee-item accent">Amazon Product Ratings <span class="marquee-sep">//</span></div>
-      <div class="marquee-item">Trustpilot Company Scores <span class="marquee-sep">//</span></div>
-      <div class="marquee-item accent">Facebook Recommendations <span class="marquee-sep">//</span></div>
-      <div class="marquee-item gold">IDA 2024 Award Winner <span class="marquee-sep">//</span></div>
-      <div class="marquee-item">Real Indian Buyers <span class="marquee-sep">//</span></div>
-      <div class="marquee-item accent">Zero Stock Loss <span class="marquee-sep">//</span></div>
-      <div class="marquee-item">Rapid Sales Growth <span class="marquee-sep">//</span></div>
+  <!-- marquee (Axuvo signature alternating outline banner) -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track" id="mq">
+      <span>Review Funnels <svg class="mq-spark" viewBox="0 0 100 100"><use href="#spark"/></svg></span>
+      <span class="m-alt">Google Maps <svg class="mq-spark" viewBox="0 0 100 100"><use href="#spark"/></svg></span>
+      <span>Amazon Ratings <svg class="mq-spark" viewBox="0 0 100 100"><use href="#spark"/></svg></span>
+      <span class="m-alt">Trustpilot Scores <svg class="mq-spark" viewBox="0 0 100 100"><use href="#spark"/></svg></span>
+      <span>Facebook Proof <svg class="mq-spark" viewBox="0 0 100 100"><use href="#spark"/></svg></span>
+      <span class="m-alt">Real Indian Buyers <svg class="mq-spark" viewBox="0 0 100 100"><use href="#spark"/></svg></span>
+      <span>Zero Stock Loss <svg class="mq-spark" viewBox="0 0 100 100"><use href="#spark"/></svg></span>
+      <span class="m-alt">Unstoppable Sales <svg class="mq-spark" viewBox="0 0 100 100"><use href="#spark"/></svg></span>
       <!-- Duplicate for seamless loop -->
-      <div class="marquee-item">Google Maps Reviews <span class="marquee-sep">//</span></div>
-      <div class="marquee-item accent">Amazon Product Ratings <span class="marquee-sep">//</span></div>
-      <div class="marquee-item">Trustpilot Company Scores <span class="marquee-sep">//</span></div>
-      <div class="marquee-item accent">Facebook Recommendations <span class="marquee-sep">//</span></div>
-      <div class="marquee-item gold">IDA 2024 Award Winner <span class="marquee-sep">//</span></div>
-      <div class="marquee-item">Real Indian Buyers <span class="marquee-sep">//</span></div>
-      <div class="marquee-item accent">Zero Stock Loss <span class="marquee-sep">//</span></div>
-      <div class="marquee-item">Rapid Sales Growth <span class="marquee-sep">//</span></div>
+      <span>Review Funnels <svg class="mq-spark" viewBox="0 0 100 100"><use href="#spark"/></svg></span>
+      <span class="m-alt">Google Maps <svg class="mq-spark" viewBox="0 0 100 100"><use href="#spark"/></svg></span>
+      <span>Amazon Ratings <svg class="mq-spark" viewBox="0 0 100 100"><use href="#spark"/></svg></span>
+      <span class="m-alt">Trustpilot Scores <svg class="mq-spark" viewBox="0 0 100 100"><use href="#spark"/></svg></span>
+      <span>Facebook Proof <svg class="mq-spark" viewBox="0 0 100 100"><use href="#spark"/></svg></span>
+      <span class="m-alt">Real Indian Buyers <svg class="mq-spark" viewBox="0 0 100 100"><use href="#spark"/></svg></span>
+      <span>Zero Stock Loss <svg class="mq-spark" viewBox="0 0 100 100"><use href="#spark"/></svg></span>
+      <span class="m-alt">Unstoppable Sales <svg class="mq-spark" viewBox="0 0 100 100"><use href="#spark"/></svg></span>
     </div>
   </div>
 
