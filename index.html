@@ -119,9 +119,10 @@
     </a>
 
     <div class="nav-links">
-      <a href="#how" class="hoverable" data-label="Go">How It Works</a>
+      <a href="#about" class="hoverable" data-label="Go">About Us</a>
+      <a href="#journey" class="hoverable" data-label="Go">Journey</a>
       <a href="#services" class="hoverable" data-label="Go">Services</a>
-      <a href="#about" class="hoverable" data-label="Go">Journey</a>
+      <a href="#how" class="hoverable" data-label="Go">How It Works</a>
       <a href="#cases" class="hoverable" data-label="Go">Results</a>
       <a href="#faq" class="hoverable" data-label="Go">FAQ</a>
       <a href="#contact" class="hoverable" data-label="Go">Contact</a>
@@ -149,9 +150,10 @@
       </button>
     </div>
     <div class="mobile-nav-links">
-      <a href="#how" class="mobile-nav-link">How It Works</a>
+      <a href="#about" class="mobile-nav-link">About Us</a>
+      <a href="#journey" class="mobile-nav-link">Journey</a>
       <a href="#services" class="mobile-nav-link">Services</a>
-      <a href="#about" class="mobile-nav-link">Journey</a>
+      <a href="#how" class="mobile-nav-link">How It Works</a>
       <a href="#cases" class="mobile-nav-link">Results</a>
       <a href="#faq" class="mobile-nav-link">FAQ</a>
       <a href="#contact" class="mobile-nav-link">Contact</a>
@@ -229,7 +231,7 @@
   </div>
 
   <!-- SECTION 01: THE BIG IDEA -->
-  <section class="manifesto-sec shell" id="about">
+  <section class="manifesto-sec shell" id="journey">
     <!-- Header -->
     <div class="sec-head rv">
       <div class="sec-label">01 — The Big Idea</div>
@@ -429,62 +431,184 @@
     </div>
   </section>
 
-  <!-- SECTION 02: AWARD RECOGNITION (From PDF) -->
-  <section class="award-sec shell" id="award">
+  <!-- SECTION 02: ABOUT RAPID REVIEW (Story, Video & Sub-Categories: Features & Awards) -->
+  <section class="about-sec shell" id="about">
     <div class="sec-head rv">
-      <div class="sec-label">02 — National Recognition</div>
+      <div class="sec-label">02 — About Rapid Review</div>
       <h2 class="sec-title">
-        AWARDED INDIA'S <span class="outline-txt">TOP BRAND</span>
+        THE ACCELERATION ENGINE <span class="outline-txt">FOR MODERN BRANDS</span>
       </h2>
       <p class="sec-lead">
-        Recognized at the prestigious <strong>IDA Awards 2024</strong> by <strong>Shilpa Shetty</strong>.
+        Real buyers, verified ratings, and unstoppable Page #1 organic sales growth across India.
       </p>
     </div>
 
-    <div class="award-card-grid">
-      <div class="award-visual-box rv">
-        <div class="award-img-showcase">
-          <img src="assets/award.png" alt="Rapid Review awarded by Shilpa Shetty at IDA National Brand Awards 2024" class="award-img" loading="lazy">
-          <span class="award-badge-tag">IDA Award Winner 2024</span>
+    <!-- Video Showcase Card (Responsive 16:9 + Lightbox Modal Trigger) -->
+    <div class="about-video-container rv">
+      <div class="video-card-topbar">
+        <div class="video-badge-pill">
+          <span class="video-live-dot"></span>
+          <span>Featured Video: About Rapid Review</span>
         </div>
-        <div class="award-box-content">
-          <h3 class="award-visual-title">
-            "Best Review & Online Reputation Management Brand"
-          </h3>
-          <p class="award-desc-quote">
-            Honored for helping brands scale ratings legally, safely, and transparently.
-          </p>
-          <div class="award-presenter">
-            <div class="presenter-avatar">IDA</div>
-            <div class="presenter-info">
-              <h4>Presented by Shilpa Shetty</h4>
-              <p>IDA National Brand Awards 2024</p>
+        <button class="video-expand-btn hoverable" id="openVideoModalBtn" data-label="Watch" aria-label="Open Fullscreen Player">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 3 21 3 21 9"></polyline>
+            <polyline points="9 21 3 21 3 15"></polyline>
+            <line x1="21" y1="3" x2="14" y2="10"></line>
+            <line x1="3" y1="21" x2="10" y2="14"></line>
+          </svg>
+          <span>Open Full Player</span>
+        </button>
+      </div>
+
+      <div class="video-iframe-wrapper">
+        <iframe
+          id="aboutVideoFrame"
+          src="https://player.cloudinary.com/embed/?cloud_name=sfvcibdn&public_id=8663fde5-6f77-4b7b-b606-e32cfffdd391"
+          width="100%"
+          height="100%"
+          title="About Rapid Review Video"
+          allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+          allowfullscreen
+          frameborder="0"
+          loading="lazy">
+        </iframe>
+      </div>
+      <div class="video-card-caption">
+        <div class="caption-left">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--cyan)"><use href="#sparkle"/></svg>
+          <span>Click play to watch directly or open in full theater mode</span>
+        </div>
+        <span class="caption-tag">HD 1080p Verified</span>
+      </div>
+    </div>
+
+    <!-- Written Section: The Rapid Review Story & Value Proposition -->
+    <div class="about-story-grid rv">
+      <div class="about-story-main">
+        <div class="story-tag-pill">Who We Are</div>
+        <h3 class="story-heading">India’s Premier 5-Star Reputation Acceleration Platform</h3>
+        <p class="story-text">
+          In an era where over <strong>93% of Indian consumers</strong> verify ratings before clicking "Buy Now", your online reputation is your highest-leverage growth channel. Rapid Review was engineered to eliminate buyer hesitation and propel ambitious brands to category leadership.
+        </p>
+        <p class="story-text">
+          We combine a vetted nationwide network of authentic Indian buyers with zero-stock-loss courier logistics. Whether you are dominating Amazon rankings, topping Google Maps local pack, or building verified credibility on Trustpilot and Facebook, we turn customer satisfaction into permanent, measurable revenue lift.
+        </p>
+      </div>
+
+      <div class="about-pillars-stack">
+        <div class="about-metric-card">
+          <div class="metric-icon"><svg viewBox="0 0 24 24"><use href="#icon-verified"/></svg></div>
+          <div class="metric-info">
+            <h4>100% Policy Compliant</h4>
+            <p>Real human profiles and verified order cycles protect your brand equity with zero bot exposure.</p>
+          </div>
+        </div>
+
+        <div class="about-metric-card">
+          <div class="metric-icon"><svg viewBox="0 0 24 24"><use href="#box"/></svg></div>
+          <div class="metric-info">
+            <h4>Zero Inventory Loss</h4>
+            <p>Smart courier box logistics ensure real-time tracking numbers without expending costly physical stock.</p>
+          </div>
+        </div>
+
+        <div class="about-metric-card">
+          <div class="metric-icon"><svg viewBox="0 0 24 24"><use href="#trending"/></svg></div>
+          <div class="metric-info">
+            <h4>+233% Organic Sales Lift</h4>
+            <p>Higher star ratings unlock search algorithms, driving high-converting organic buyer traffic continuously.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sub-Categories: Features & Awards Switcher -->
+    <div class="about-subcats rv" id="award">
+      <div class="subcat-nav" role="tablist">
+        <button class="subcat-tab active" id="tabAwards" role="tab" aria-selected="true" aria-controls="panelAwards" data-tab="awards">
+          <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><use href="#trophy"/></svg>
+          Awards & Recognition
+        </button>
+        <button class="subcat-tab" id="tabFeatures" role="tab" aria-selected="false" aria-controls="panelFeatures" data-tab="features">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#sparkle"/></svg>
+          Features
+        </button>
+      </div>
+
+      <!-- Tab Panel 1: Awards (Using award photo) -->
+      <div class="subcat-panel active" id="panelAwards" role="tabpanel" aria-labelledby="tabAwards">
+        <div class="award-card-grid">
+          <div class="award-visual-box">
+            <div class="award-img-showcase">
+              <img src="assets/award.png" alt="Rapid Review awarded by Shilpa Shetty at IDA National Brand Awards 2024" class="award-img" loading="lazy">
+              <span class="award-badge-tag">IDA Award Winner 2024</span>
+            </div>
+            <div class="award-box-content">
+              <h3 class="award-visual-title">
+                "Best Review & Online Reputation Management Brand"
+              </h3>
+              <p class="award-desc-quote">
+                Honored on the national stage for helping businesses build authentic buyer trust and scalable ratings safely.
+              </p>
+              <div class="award-presenter">
+                <div class="presenter-avatar">IDA</div>
+                <div class="presenter-info">
+                  <h4>Presented by Shilpa Shetty</h4>
+                  <p>IDA National Brand Awards 2024</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="award-editorial-box">
+            <div class="award-story-badge">
+              <svg width="14" height="14" fill="var(--gold)" viewBox="0 0 24 24"><use href="#trophy"/></svg>
+              <span>National Recognition & Proven Authority</span>
+            </div>
+            <h3 class="award-story-title">Recognized as India’s #1 Reputation Accelerator</h3>
+            <p class="award-story-p">
+              The Indian Brand Awards (IDA) celebrated Rapid Review for its innovative review management architecture. Our transparent methodology ensures that client brands scale safely with authentic feedback, zero algorithm penalties, and rapid ranking recovery.
+            </p>
+            <div class="award-story-stats">
+              <div class="story-stat-item">
+                <span class="stat-big">+233%</span>
+                <span class="stat-desc">Average monthly sales surge</span>
+              </div>
+              <div class="story-stat-item">
+                <span class="stat-big">100%</span>
+                <span class="stat-desc">Verified unique Indian buyers</span>
+              </div>
+              <div class="story-stat-item">
+                <span class="stat-big">Zero</span>
+                <span class="stat-desc">Inventory loss with courier logistics</span>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="award-editorial-box rv">
-        <div class="award-story-badge">
-          <svg width="14" height="14" fill="var(--gold)" viewBox="0 0 24 24"><use href="#trophy"/></svg>
-          <span>Award-Winning Brand Transformation</span>
-        </div>
-        <h3 class="award-story-title">How Rapid Review Powers Modern Brands</h3>
-        <p class="award-story-p">
-          93% of customers check reviews before buying. Rapid Review delivers verified, policy-safe 5-star ratings that push your listings to Page #1 without risking inventory.
-        </p>
-        <div class="award-story-stats">
-          <div class="story-stat-item">
-            <span class="stat-big">+233%</span>
-            <span class="stat-desc">Average monthly sales surge</span>
-          </div>
-          <div class="story-stat-item">
-            <span class="stat-big">100%</span>
-            <span class="stat-desc">Verified unique Indian buyers</span>
-          </div>
-          <div class="story-stat-item">
-            <span class="stat-big">Zero</span>
-            <span class="stat-desc">Inventory loss with courier logistics</span>
+      <!-- Tab Panel 2: Features (Kept blank / clean placeholder as requested) -->
+      <div class="subcat-panel" id="panelFeatures" role="tabpanel" aria-labelledby="tabFeatures" style="display:none;">
+        <div class="features-blank-state">
+          <div class="blank-state-card">
+            <div class="blank-icon-box">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="3" y1="9" x2="21" y2="9"></line>
+                <line x1="9" y1="21" x2="9" y2="9"></line>
+              </svg>
+            </div>
+            <span class="blank-tag">Sub-Category: Features</span>
+            <h3 class="blank-title">Features Module</h3>
+            <p class="blank-subtitle">
+              Detailed features, service capabilities, and integration specifications are coming soon.
+            </p>
+            <div class="blank-skeleton-grid">
+              <div class="blank-skeleton-item"></div>
+              <div class="blank-skeleton-item"></div>
+              <div class="blank-skeleton-item"></div>
+            </div>
           </div>
         </div>
       </div>
@@ -942,6 +1066,35 @@
       </div>
     </div>
   </footer>
+
+  <!-- Video Theater Lightbox Modal -->
+  <div class="video-modal-backdrop" id="videoModal" aria-hidden="true">
+    <div class="video-modal-dialog">
+      <div class="video-modal-header">
+        <div class="modal-title-group">
+          <svg class="spark" viewBox="0 0 100 100" style="width:16px;height:16px;fill:var(--cyan);"><use href="#spark"/></svg>
+          <span class="modal-video-title">About Rapid Review — Presentation Video</span>
+        </div>
+        <button class="video-modal-close hoverable" id="closeVideoModalBtn" aria-label="Close video player" data-label="Close">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <div class="video-modal-player-wrap">
+        <iframe
+          id="modalVideoIframe"
+          src=""
+          data-src="https://player.cloudinary.com/embed/?cloud_name=sfvcibdn&public_id=8663fde5-6f77-4b7b-b606-e32cfffdd391&autoplay=true"
+          title="About Rapid Review Full Player"
+          allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+          allowfullscreen
+          frameborder="0">
+        </iframe>
+      </div>
+    </div>
+  </div>
 
   <script src="js/main.js"></script>
 </body>

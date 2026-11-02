@@ -424,4 +424,86 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+
+  /* ============================================================
+     9. ABOUT RAPID REVIEW: SUBCATEGORY TABS & VIDEO LIGHTBOX
+     ============================================================ */
+  const tabAwards = document.getElementById('tabAwards');
+  const tabFeatures = document.getElementById('tabFeatures');
+  const panelAwards = document.getElementById('panelAwards');
+  const panelFeatures = document.getElementById('panelFeatures');
+
+  if (tabAwards && tabFeatures && panelAwards && panelFeatures) {
+    const switchTab = (tabName) => {
+      if (tabName === 'awards') {
+        tabAwards.classList.add('active');
+        tabAwards.setAttribute('aria-selected', 'true');
+        tabFeatures.classList.remove('active');
+        tabFeatures.setAttribute('aria-selected', 'false');
+
+        panelAwards.style.display = 'block';
+        panelFeatures.style.display = 'none';
+      } else if (tabName === 'features') {
+        tabFeatures.classList.add('active');
+        tabFeatures.setAttribute('aria-selected', 'true');
+        tabAwards.classList.remove('active');
+        tabAwards.setAttribute('aria-selected', 'false');
+
+        panelFeatures.style.display = 'block';
+        panelAwards.style.display = 'none';
+      }
+    };
+
+    tabAwards.addEventListener('click', () => switchTab('awards'));
+    tabFeatures.addEventListener('click', () => switchTab('features'));
+  }
+
+  // Video Lightbox Modal Controls
+  const videoModal = document.getElementById('videoModal');
+  const openVideoModalBtn = document.getElementById('openVideoModalBtn');
+  const closeVideoModalBtn = document.getElementById('closeVideoModalBtn');
+  const modalVideoIframe = document.getElementById('modalVideoIframe');
+
+  function openVideoModal() {
+    if (!videoModal || !modalVideoIframe) return;
+    const videoSrc = modalVideoIframe.getAttribute('data-src');
+    if (videoSrc) {
+      modalVideoIframe.src = videoSrc;
+    }
+    videoModal.classList.add('open');
+    videoModal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeVideoModal() {
+    if (!videoModal || !modalVideoIframe) return;
+    videoModal.classList.remove('open');
+    videoModal.setAttribute('aria-hidden', 'true');
+    // Clear iframe src to stop video playback and audio immediately
+    modalVideoIframe.src = '';
+    document.body.style.overflow = '';
+  }
+
+  if (openVideoModalBtn) {
+    openVideoModalBtn.addEventListener('click', openVideoModal);
+  }
+
+  if (closeVideoModalBtn) {
+    closeVideoModalBtn.addEventListener('click', closeVideoModal);
+  }
+
+  if (videoModal) {
+    videoModal.addEventListener('click', (e) => {
+      if (e.target === videoModal) {
+        closeVideoModal();
+      }
+    });
+  }
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && videoModal && videoModal.classList.contains('open')) {
+      closeVideoModal();
+    }
+  });
+
 });
