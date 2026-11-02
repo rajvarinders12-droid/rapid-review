@@ -1753,6 +1753,333 @@ img, svg { display: block; max-width: 100%; }
   transform: scale(1.05);
 }
 
+/* ============================================================
+   NEWSPAPER FEATURE SECTION (Horizontal Scroll Showcase)
+   ============================================================ */
+.newspaper-feature-section {
+  margin-top: 36px;
+  background: linear-gradient(145deg, rgba(20, 24, 34, 0.75) 0%, rgba(13, 16, 22, 0.95) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-lg);
+  padding: clamp(24px, 3.5vw, 40px) clamp(16px, 3.5vw, 36px);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.45);
+}
+
+.newspaper-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.newspaper-header-text {
+  max-width: 640px;
+}
+
+.press-pill {
+  color: var(--cyan);
+  background: rgba(0, 229, 255, 0.1);
+  border-color: rgba(0, 229, 255, 0.25);
+}
+
+.newspaper-title {
+  font-size: clamp(24px, 3.2vw, 36px);
+  font-weight: 900;
+  line-height: 1.15;
+  color: var(--bone);
+  margin-bottom: 8px;
+  letter-spacing: -0.02em;
+}
+
+.newspaper-desc {
+  font-size: 14px;
+  color: var(--bone-dim);
+  line-height: 1.55;
+}
+
+.newspaper-nav-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.news-nav-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--bone);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.news-nav-btn:hover {
+  background: var(--cyan);
+  border-color: var(--cyan);
+  color: #000;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(0, 229, 255, 0.35);
+}
+
+/* Horizontal Scroll Container */
+.newspaper-scroll-container {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
+  padding: 8px 4px 22px;
+  margin: 0 -4px;
+}
+
+/* Custom Sleek Scrollbar */
+.newspaper-scroll-container::-webkit-scrollbar {
+  height: 6px;
+}
+
+.newspaper-scroll-container::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 999px;
+}
+
+.newspaper-scroll-container::-webkit-scrollbar-thumb {
+  background: rgba(0, 229, 255, 0.35);
+  border-radius: 999px;
+}
+
+.newspaper-scroll-container::-webkit-scrollbar-thumb:hover {
+  background: var(--cyan);
+}
+
+.newspaper-cards-track {
+  display: flex;
+  gap: clamp(16px, 2.5vw, 26px);
+  width: max-content;
+}
+
+.newspaper-card {
+  flex: 0 0 clamp(290px, 32vw, 380px);
+  scroll-snap-align: start;
+  background: var(--ink-card);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.newspaper-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(0, 229, 255, 0.4);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.65), 0 0 20px rgba(0, 229, 255, 0.12);
+}
+
+.newspaper-card-img-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000;
+  overflow: hidden;
+}
+
+.newspaper-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.newspaper-card:hover .newspaper-img {
+  transform: scale(1.05);
+}
+
+.newspaper-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-family: var(--font-m);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--bone);
+  background: rgba(13, 16, 22, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-weight: 700;
+  z-index: 2;
+}
+
+.newspaper-zoom-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(6, 8, 12, 0.65);
+  backdrop-filter: blur(3px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: var(--cyan);
+  font-family: var(--font-m);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  z-index: 3;
+}
+
+.newspaper-card:hover .newspaper-zoom-overlay {
+  opacity: 1;
+}
+
+.newspaper-meta {
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: linear-gradient(180deg, rgba(20, 24, 34, 0.5) 0%, rgba(13, 16, 22, 0.9) 100%);
+  flex-grow: 1;
+}
+
+.newspaper-meta h4 {
+  font-size: 15.5px;
+  font-weight: 700;
+  color: var(--bone);
+  letter-spacing: -0.01em;
+}
+
+.newspaper-meta p {
+  font-size: 13px;
+  color: var(--bone-dim);
+  line-height: 1.5;
+}
+
+.newspaper-scroll-hint {
+  margin-top: 8px;
+  text-align: center;
+  font-family: var(--font-m);
+  font-size: 11.5px;
+  color: var(--steel);
+  letter-spacing: 0.08em;
+}
+
+/* Image Lightbox Modal */
+.image-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(5, 7, 11, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  z-index: 999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(14px, 3vw, 36px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.image-modal-backdrop.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.image-modal-dialog {
+  width: 100%;
+  max-width: 1100px;
+  max-height: 90vh;
+  background: #0d1017;
+  border: 1px solid rgba(0, 229, 255, 0.35);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.9), 0 0 50px rgba(0, 229, 255, 0.2);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transform: scale(0.94);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.image-modal-backdrop.open .image-modal-dialog {
+  transform: scale(1);
+}
+
+.image-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  background: rgba(20, 24, 34, 0.9);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.image-modal-title {
+  font-family: var(--font-m);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  color: var(--bone);
+  font-weight: 700;
+}
+
+.image-modal-close {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--bone);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.image-modal-close:hover {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: rgba(239, 68, 68, 0.6);
+  color: #ef4444;
+  transform: rotate(90deg);
+}
+
+.image-modal-body {
+  overflow: auto;
+  max-height: calc(90vh - 65px);
+  padding: 16px;
+  background: #06070a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-modal-body img {
+  max-width: 100%;
+  max-height: 80vh;
+  object-fit: contain;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
 /* Video Lightbox / Cinema Modal */
 .video-modal-backdrop {
   position: fixed;
@@ -2220,6 +2547,142 @@ img, svg { display: block; max-width: 100%; }
 
 .simulator-sec .sec-title .highlight {
   color: #a5b4fc;
+}
+
+/* 3-Step Mindmap Architecture Chart (Section 04) */
+.how-mindmap-wrap {
+  width: 100%;
+  max-width: 1140px;
+  margin: 0 auto 40px auto;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(0, 229, 255, 0.22);
+  background: linear-gradient(145deg, rgba(17, 24, 39, 0.92) 0%, rgba(10, 15, 24, 0.98) 100%);
+  padding: clamp(24px, 3.5vw, 36px) clamp(16px, 3.5vw, 32px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), 0 0 35px rgba(0, 229, 255, 0.08);
+  box-sizing: border-box;
+}
+
+.how-mindmap-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.how-mindmap-steps {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 14px;
+  position: relative;
+  margin-bottom: 28px;
+}
+
+.how-mindmap-node {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.how-mindmap-node .node-marker {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--ink-card);
+  border: 1.5px solid var(--cyan);
+  color: var(--cyan);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-m);
+  font-size: 11.5px;
+  font-weight: 800;
+  margin-bottom: 14px;
+  box-shadow: 0 0 14px rgba(0, 229, 255, 0.3);
+  flex-shrink: 0;
+}
+
+.how-mindmap-node .node-card {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  background: rgba(13, 16, 23, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-md);
+  padding: 22px 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.25s var(--ease-out), border-color 0.25s, box-shadow 0.25s;
+}
+
+.how-mindmap-node .node-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(0, 229, 255, 0.45);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 229, 255, 0.12);
+}
+
+.how-mindmap-connector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 42px;
+  flex-shrink: 0;
+}
+
+.how-mindmap-connector .connector-arrow svg {
+  width: 20px;
+  height: 20px;
+  stroke: var(--cyan);
+}
+
+.node-tag-pill {
+  display: inline-block;
+  margin-top: 14px;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  font-family: var(--font-m);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  border: 1px solid rgba(0, 229, 255, 0.35);
+  background: rgba(0, 229, 255, 0.08);
+}
+
+.how-mindmap-foot-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 13px;
+  color: var(--bone-dim);
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.mm-foot-guarantee {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--emerald);
+  font-weight: 600;
+}
+
+.how-steps-detail-wrap {
+  width: 100%;
+  margin-top: 28px;
 }
 
 .sim-container {
@@ -3031,6 +3494,90 @@ select.form-control option {
     padding-top: 16px;
     font-size: 11.5px;
   }
+
+  /* Section 04 How It Works Mindmap Mobile/Tablet Vertical Layout */
+  .how-mindmap-wrap {
+    padding: 22px 16px;
+    border-radius: var(--radius-md);
+  }
+
+  .how-mindmap-top-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding-bottom: 16px;
+    margin-bottom: 22px;
+  }
+
+  .how-mindmap-steps {
+    flex-direction: column;
+    gap: 14px;
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 20px;
+  }
+
+  .how-mindmap-steps::before {
+    content: "";
+    position: absolute;
+    left: 35px;
+    top: 20px;
+    bottom: 20px;
+    width: 2px;
+    background: linear-gradient(180deg, var(--cyan) 0%, var(--gold) 50%, var(--emerald) 100%);
+    z-index: 1;
+  }
+
+  .how-mindmap-node {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 12px;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+  }
+
+  .how-mindmap-node .node-marker {
+    margin-bottom: 0;
+    margin-top: 10px;
+    background: #0d121c;
+    z-index: 2;
+  }
+
+  .how-mindmap-node .node-card {
+    text-align: left;
+    align-items: flex-start;
+    padding: 16px 14px;
+    border-radius: var(--radius-sm);
+  }
+
+  .how-mindmap-connector {
+    display: none !important;
+  }
+
+  .how-mindmap-foot-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding-top: 16px;
+    font-size: 11.5px;
+  }
+
+  /* Newspaper Feature Responsiveness */
+  .newspaper-feature-section {
+    padding: 20px 16px;
+    margin-top: 28px;
+  }
+
+  .newspaper-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .newspaper-card {
+    flex: 0 0 clamp(260px, 78vw, 320px);
+  }
 }
 
 @media (max-width: 768px) {
@@ -3507,5 +4054,22 @@ select.form-control option {
   .featured-logo-img {
     max-width: 78px;
     max-height: 30px;
+  }
+  .newspaper-card {
+    flex: 0 0 calc(100vw - 64px);
+  }
+  .how-mindmap-wrap {
+    padding: 16px 12px;
+  }
+  .how-mindmap-steps {
+    padding-left: 12px;
+  }
+  .how-mindmap-steps::before {
+    left: 27px;
+  }
+  .how-mindmap-node .node-marker {
+    width: 30px;
+    height: 30px;
+    font-size: 10.5px;
   }
 }

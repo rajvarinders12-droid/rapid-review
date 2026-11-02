@@ -485,4 +485,89 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+
+  /* ============================================================
+     10. NEWSPAPER FEATURE HORIZONTAL SCROLL & IMAGE LIGHTBOX MODAL
+     ============================================================ */
+  const newsTrack = document.getElementById('newspaperScroll');
+  const newsLeft = document.getElementById('newsScrollLeft');
+  const newsRight = document.getElementById('newsScrollRight');
+
+  if (newsTrack && newsLeft && newsRight) {
+    newsLeft.addEventListener('click', () => {
+      newsTrack.scrollBy({ left: -360, behavior: 'smooth' });
+    });
+    newsRight.addEventListener('click', () => {
+      newsTrack.scrollBy({ left: 360, behavior: 'smooth' });
+    });
+  }
+
+  // Newspaper Image Lightbox Modal
+  const imageModal = document.getElementById('imageModal');
+  const closeImageModalBtn = document.getElementById('closeImageModalBtn');
+  const imageModalImg = document.getElementById('imageModalImg');
+  const imageModalTitle = document.getElementById('imageModalTitle');
+  const newspaperCards = document.querySelectorAll('.newspaper-card');
+
+  function openImageModal(imgSrc, title) {
+    if (!imageModal || !imageModalImg) return;
+    imageModalImg.src = imgSrc;
+    imageModalImg.alt = title || 'Newspaper Coverage';
+    if (imageModalTitle) {
+      imageModalTitle.textContent = title || 'Press & Newspaper Coverage';
+    }
+    imageModal.classList.add('open');
+    imageModal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeImageModal() {
+    if (!imageModal || !imageModalImg) return;
+    imageModal.classList.remove('open');
+    imageModal.setAttribute('aria-hidden', 'true');
+    imageModalImg.src = '';
+    document.body.style.overflow = '';
+  }
+
+  if (newspaperCards.length) {
+    newspaperCards.forEach((card) => {
+      card.addEventListener('click', () => {
+        const imgSrc = card.getAttribute('data-img');
+        const title = card.getAttribute('data-title');
+        if (imgSrc) {
+          openImageModal(imgSrc, title);
+        }
+      });
+      // Keyboard accessibility
+      card.setAttribute('tabindex', '0');
+      card.setAttribute('role', 'button');
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          const imgSrc = card.getAttribute('data-img');
+          const title = card.getAttribute('data-title');
+          if (imgSrc) openImageModal(imgSrc, title);
+        }
+      });
+    });
+  }
+
+  if (closeImageModalBtn) {
+    closeImageModalBtn.addEventListener('click', closeImageModal);
+  }
+
+  if (imageModal) {
+    imageModal.addEventListener('click', (e) => {
+      if (e.target === imageModal) {
+        closeImageModal();
+      }
+    });
+  }
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && imageModal && imageModal.classList.contains('open')) {
+      closeImageModal();
+    }
+  });
+
 });
