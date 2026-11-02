@@ -5,7 +5,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
   /* ============================================================
-     1. SCROLL REVEALS
+     1. SCROLL REVEALS (Smooth Bidirectional Fade-In & Fade-Out)
      ============================================================ */
   const revealElements = document.querySelectorAll('.rv');
   if (revealElements.length > 0) {
@@ -13,6 +13,11 @@ document.addEventListener('DOMContentLoaded', () => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add('is-revealed');
+          entry.target.classList.remove('is-hidden');
+        } else {
+          // Smoothly fade out when out of view
+          entry.target.classList.remove('is-revealed');
+          entry.target.classList.add('is-hidden');
         }
       });
     }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
@@ -322,27 +327,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* ============================================================
-     7. ACCORDION FAQ (Only 1 Question Open at a Time)
+     7. ACCORDION FAQ (Smooth Fluid Expand & Collapse)
      ============================================================ */
   const faqItems = document.querySelectorAll('.faq-item');
   faqItems.forEach((item) => {
     const summary = item.querySelector('.faq-summary');
     if (summary) {
       summary.addEventListener('click', (e) => {
-        e.preventDefault(); // Control state manually for fluid height & mutual exclusivity
-        const isOpen = item.hasAttribute('open');
+        e.preventDefault();
+        const isActive = item.classList.contains('active');
 
-        // Close all other items
+        // Close all other items with smooth transition
         faqItems.forEach((other) => {
-          if (other !== item) {
-            other.removeAttribute('open');
+          if (other !== item && other.classList.contains('active')) {
+            other.classList.remove('active');
+            const otherBtn = other.querySelector('.faq-summary');
+            if (otherBtn) otherBtn.setAttribute('aria-expanded', 'false');
           }
         });
 
-        if (isOpen) {
-          item.removeAttribute('open');
+        // Toggle clicked item
+        if (isActive) {
+          item.classList.remove('active');
+          summary.setAttribute('aria-expanded', 'false');
         } else {
-          item.setAttribute('open', '');
+          item.classList.add('active');
+          summary.setAttribute('aria-expanded', 'true');
         }
       });
     }
@@ -426,39 +436,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* ============================================================
-     9. ABOUT RAPID REVIEW: SUBCATEGORY TABS & VIDEO LIGHTBOX
+     9. ABOUT RAPID REVIEW: VIDEO LIGHTBOX
      ============================================================ */
-  const tabAwards = document.getElementById('tabAwards');
-  const tabFeatures = document.getElementById('tabFeatures');
-  const panelAwards = document.getElementById('panelAwards');
-  const panelFeatures = document.getElementById('panelFeatures');
-
-  if (tabAwards && tabFeatures && panelAwards && panelFeatures) {
-    const switchTab = (tabName) => {
-      if (tabName === 'awards') {
-        tabAwards.classList.add('active');
-        tabAwards.setAttribute('aria-selected', 'true');
-        tabFeatures.classList.remove('active');
-        tabFeatures.setAttribute('aria-selected', 'false');
-
-        panelAwards.style.display = 'block';
-        panelFeatures.style.display = 'none';
-      } else if (tabName === 'features') {
-        tabFeatures.classList.add('active');
-        tabFeatures.setAttribute('aria-selected', 'true');
-        tabAwards.classList.remove('active');
-        tabAwards.setAttribute('aria-selected', 'false');
-
-        panelFeatures.style.display = 'block';
-        panelAwards.style.display = 'none';
-      }
-    };
-
-    tabAwards.addEventListener('click', () => switchTab('awards'));
-    tabFeatures.addEventListener('click', () => switchTab('features'));
-  }
-
-  // Video Lightbox Modal Controls
   const videoModal = document.getElementById('videoModal');
   const openVideoModalBtn = document.getElementById('openVideoModalBtn');
   const closeVideoModalBtn = document.getElementById('closeVideoModalBtn');
