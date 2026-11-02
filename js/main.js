@@ -169,6 +169,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
+  const mobileDrawerClose = document.getElementById('mobileDrawerClose');
+
   function toggleMobileMenu(forceState) {
     if (!mobileDrawer || !navToggle) return;
     const shouldOpen = forceState !== undefined ? forceState : !mobileDrawer.classList.contains('open');
@@ -180,6 +182,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (navToggle) {
     navToggle.addEventListener('click', () => toggleMobileMenu());
+  }
+
+  if (mobileDrawerClose) {
+    mobileDrawerClose.addEventListener('click', () => toggleMobileMenu(false));
   }
 
   mobileLinks.forEach((link) => {
