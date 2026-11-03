@@ -773,50 +773,50 @@ img, svg { display: block; max-width: 100%; }
 /* Global Scroll Reveal: Smooth Bidirectional Fade-In & Fade-Out */
 .rv {
   opacity: 0;
-  transform: translateY(28px) scale(0.985);
-  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(20px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 
 .rv.is-revealed {
   opacity: 1;
-  transform: translateY(0) scale(1);
+  transform: translateY(0);
 }
 
 .rv.is-hidden {
   opacity: 0;
-  transform: translateY(28px) scale(0.985);
-  transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(20px);
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
   transition-delay: 0s !important;
 }
 
 /* Stagger Delays for Grid & Sequence Elements */
-.rv-delay-1 { transition-delay: 0.08s; }
-.rv-delay-2 { transition-delay: 0.16s; }
-.rv-delay-3 { transition-delay: 0.24s; }
-.rv-delay-4 { transition-delay: 0.32s; }
-.rv-delay-5 { transition-delay: 0.40s; }
-.rv-delay-6 { transition-delay: 0.48s; }
+.rv-delay-1 { transition-delay: 0.06s; }
+.rv-delay-2 { transition-delay: 0.12s; }
+.rv-delay-3 { transition-delay: 0.18s; }
+.rv-delay-4 { transition-delay: 0.24s; }
+.rv-delay-5 { transition-delay: 0.30s; }
+.rv-delay-6 { transition-delay: 0.36s; }
 
 /* Subtle Directional Reveal Variants */
 .rv-left {
-  transform: translateX(-28px);
+  transform: translateX(-20px);
 }
 .rv-left.is-revealed {
   transform: translateX(0);
 }
 .rv-left.is-hidden {
-  transform: translateX(-28px);
+  transform: translateX(-20px);
 }
 
 .rv-right {
-  transform: translateX(28px);
+  transform: translateX(20px);
 }
 .rv-right.is-revealed {
   transform: translateX(0);
 }
 .rv-right.is-hidden {
-  transform: translateX(28px);
+  transform: translateX(20px);
 }
 
 /* Keyframe Animations & Micro-Interactions */

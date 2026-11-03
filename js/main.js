@@ -5,7 +5,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
   /* ============================================================
-     1. SCROLL REVEALS (Smooth Bidirectional Fade-In & Fade-Out)
+     1. SCROLL REVEALS (Smooth, Glitch-Free Bidirectional Fade-In)
      ============================================================ */
   const revealElements = document.querySelectorAll('.rv');
   if (revealElements.length > 0) {
@@ -15,12 +15,15 @@ document.addEventListener('DOMContentLoaded', () => {
           entry.target.classList.add('is-revealed');
           entry.target.classList.remove('is-hidden');
         } else {
-          // Smoothly fade out when out of view
-          entry.target.classList.remove('is-revealed');
-          entry.target.classList.add('is-hidden');
+          // Only fade out when the element has dropped BELOW the viewport (user scrolled up past it)
+          // Never hide when scrolled past the top to prevent boundary thrashing, flickers & scroll glitching
+          if (entry.boundingClientRect.top > 0) {
+            entry.target.classList.remove('is-revealed');
+            entry.target.classList.add('is-hidden');
+          }
         }
       });
-    }, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
+    }, { threshold: 0.02, rootMargin: '0px 0px -15px 0px' });
     revealElements.forEach((el) => observer.observe(el));
   }
 
@@ -214,11 +217,20 @@ document.addEventListener('DOMContentLoaded', () => {
       const targetEl = document.querySelector(targetId);
       if (targetEl) {
         e.preventDefault();
+
+        // Lock target section & children in revealed state before scroll starts to prevent layout shifting
+        targetEl.classList.add('is-revealed');
+        targetEl.classList.remove('is-hidden');
+        targetEl.querySelectorAll('.rv').forEach((child) => {
+          child.classList.add('is-revealed');
+          child.classList.remove('is-hidden');
+        });
+
         const navHeight = navbar ? navbar.offsetHeight : 70;
-        const targetPos = targetEl.getBoundingClientRect().top + window.pageYOffset - navHeight - 14;
+        const targetPos = targetEl.getBoundingClientRect().top + window.pageYOffset - navHeight - 10;
 
         window.scrollTo({
-          top: Math.max(0, targetPos),
+          top: Math.max(0, Math.round(targetPos)),
           behavior: 'smooth'
         });
 
@@ -249,6 +261,7 @@ document.addEventListener('DOMContentLoaded', () => {
     updateWords = () => {
       const rect = manifestoText.getBoundingClientRect();
       const windowH = window.innerHeight;
+      if (rect.bottom < 0 || rect.top > windowH) return;
       const progress = Math.min(1, Math.max(0, (windowH * 0.75 - rect.top) / (rect.height + windowH * 0.3)));
       const activeCount = Math.floor(progress * wordSpans.length);
 
