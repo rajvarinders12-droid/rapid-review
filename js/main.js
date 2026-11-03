@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
           entry.target.classList.add('is-hidden');
         }
       });
-    }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+    }, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
     revealElements.forEach((el) => observer.observe(el));
   }
 
