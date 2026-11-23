@@ -1,5 +1,5 @@
 /* ============================================================
-   RAPID REVIEW — Master Interactive Script (Clean & Fast)
+   VIBE SOCIAL — Master Interactive Script (Clean & Fast)
    ============================================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -440,7 +440,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       const phone = document.getElementById('clientPhone')?.value || '';
 
-      const message = `Hello Rapid Review Team,\n\nI would like to start a Reputation Campaign for *${brandName}*.\n- Platform: ${platform}\n- WhatsApp Contact: ${phone}\n\nPlease share campaign timeline and proposal.`;
+      const message = `Hello Vibe Social Team,\n\nI would like to start a Reputation Campaign for *${brandName}*.\n- Platform: ${platform}\n- WhatsApp Contact: ${phone}\n\nPlease share campaign timeline and proposal.`;
 
       const waUrl = `https://wa.me/917341138757?text=${encodeURIComponent(message)}`;
       window.open(waUrl, '_blank');
@@ -449,7 +449,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* ============================================================
-     9. ABOUT RAPID REVIEW: VIDEO LIGHTBOX
+     9. ABOUT VIBE SOCIAL: VIDEO LIGHTBOX
      ============================================================ */
   const videoModal = document.getElementById('videoModal');
   const openVideoModalBtn = document.getElementById('openVideoModalBtn');
