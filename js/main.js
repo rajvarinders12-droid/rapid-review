@@ -505,14 +505,76 @@ document.addEventListener('DOMContentLoaded', () => {
   const newsTrack = document.getElementById('newspaperScroll');
   const newsLeft = document.getElementById('newsScrollLeft');
   const newsRight = document.getElementById('newsScrollRight');
+  const newsDots = document.querySelectorAll('.news-dot');
+  const newsCurrentIndex = document.getElementById('newsCurrentIndex');
+  const newspaperCards = document.querySelectorAll('.newspaper-card');
+
+  function getNewsStep() {
+    if (!newsTrack) return 360;
+    const firstCard = newsTrack.querySelector('.newspaper-card');
+    if (!firstCard) return newsTrack.clientWidth;
+    const track = newsTrack.querySelector('.newspaper-cards-track');
+    let gap = 14;
+    if (track) {
+      const g = parseFloat(window.getComputedStyle(track).gap);
+      if (!isNaN(g)) gap = g;
+    }
+    if (window.innerWidth <= 768) {
+      return newsTrack.clientWidth + gap;
+    }
+    return firstCard.offsetWidth + gap;
+  }
 
   if (newsTrack && newsLeft && newsRight) {
     newsLeft.addEventListener('click', () => {
-      newsTrack.scrollBy({ left: -360, behavior: 'smooth' });
+      newsTrack.scrollBy({ left: -getNewsStep(), behavior: 'smooth' });
     });
     newsRight.addEventListener('click', () => {
-      newsTrack.scrollBy({ left: 360, behavior: 'smooth' });
+      newsTrack.scrollBy({ left: getNewsStep(), behavior: 'smooth' });
     });
+  }
+
+  function updateNewsCarouselState() {
+    if (!newsTrack || !newspaperCards.length) return;
+    const scrollLeft = newsTrack.scrollLeft;
+    let activeIdx = 0;
+    let minDistance = Infinity;
+
+    newspaperCards.forEach((card, index) => {
+      const distance = Math.abs(card.offsetLeft - scrollLeft);
+      if (distance < minDistance) {
+        minDistance = distance;
+        activeIdx = index;
+      }
+    });
+
+    if (newsDots.length) {
+      newsDots.forEach((dot, idx) => {
+        dot.classList.toggle('active', idx === activeIdx);
+      });
+    }
+    if (newsCurrentIndex) {
+      newsCurrentIndex.textContent = (activeIdx + 1).toString();
+    }
+  }
+
+  if (newsTrack) {
+    let scrollTimeout;
+    newsTrack.addEventListener('scroll', () => {
+      if (scrollTimeout) cancelAnimationFrame(scrollTimeout);
+      scrollTimeout = requestAnimationFrame(updateNewsCarouselState);
+    }, { passive: true });
+
+    if (newsDots.length) {
+      newsDots.forEach((dot) => {
+        dot.addEventListener('click', () => {
+          const idx = parseInt(dot.getAttribute('data-index'), 10);
+          if (!isNaN(idx) && newspaperCards[idx]) {
+            newspaperCards[idx].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+          }
+        });
+      });
+    }
   }
 
   // Newspaper Image Lightbox Modal
@@ -520,7 +582,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const closeImageModalBtn = document.getElementById('closeImageModalBtn');
   const imageModalImg = document.getElementById('imageModalImg');
   const imageModalTitle = document.getElementById('imageModalTitle');
-  const newspaperCards = document.querySelectorAll('.newspaper-card');
 
   function openImageModal(imgSrc, title) {
     if (!imageModal || !imageModalImg) return;

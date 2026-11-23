@@ -2097,6 +2097,50 @@ img, svg { display: block; max-width: 100%; }
   letter-spacing: 0.08em;
 }
 
+/* Carousel Pagination Dots & Slide Counter */
+.newspaper-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 14px;
+  padding: 0 4px;
+}
+
+.news-dots {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.news-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.news-dot:hover {
+  background: rgba(0, 229, 255, 0.6);
+}
+
+.news-dot.active {
+  width: 24px;
+  background: var(--cyan);
+  box-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
+}
+
+.news-counter {
+  font-family: var(--font-m);
+  font-size: 11.5px;
+  color: var(--bone-dim);
+  letter-spacing: 0.05em;
+  font-weight: 700;
+}
+
 /* Image Lightbox Modal */
 .image-modal-backdrop {
   position: fixed;
@@ -2972,8 +3016,10 @@ img, svg { display: block; max-width: 100%; }
   background: linear-gradient(180deg, #11151f 0%, #0a0d13 100%);
   border: 1px solid rgba(255, 255, 255, 0.09);
   border-radius: var(--radius-lg);
-  padding: clamp(20px, 3vw, 26px);
+  padding: 0;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
   transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
 }
 
@@ -2985,55 +3031,60 @@ img, svg { display: block; max-width: 100%; }
 
 .case-img-wrap {
   position: relative;
-  border-radius: var(--radius-md);
+  width: 100%;
+  background: #000;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   overflow: hidden;
-  margin-bottom: 16px;
-  background: var(--ink-2);
-  border: 1px solid var(--line);
-  aspect-ratio: 16 / 9;
+  display: block;
 }
 
 .case-img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
+  height: auto;
   display: block;
+  object-fit: contain;
   transition: transform 0.35s var(--ease-out);
 }
 
 .case-card:hover .case-img {
-  transform: scale(1.03);
+  transform: scale(1.02);
+}
+
+.case-body {
+  padding: clamp(14px, 2.2vw, 20px);
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
 .case-top {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .case-brand-tag { font-family: var(--font-m); font-size: 10.5px; color: var(--cyan); }
 .case-badge { font-family: var(--font-m); font-size: 10px; color: var(--gold); background: rgba(245,158,11,0.1); padding: 2px 8px; border-radius: var(--radius-full); }
 
-.case-title { font-size: 17.5px; font-weight: 800; margin-bottom: 14px; }
+.case-title { font-size: 17px; font-weight: 800; margin-bottom: 10px; }
 
 .case-numbers {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
+  gap: 10px;
   background: var(--ink-2);
   border: 1px solid var(--line);
   border-radius: var(--radius-md);
-  padding: 12px 14px;
-  margin-bottom: 14px;
+  padding: 10px 12px;
+  margin-bottom: 10px;
 }
 
-.case-num-col h6 { font-family: var(--font-m); font-size: 10px; text-transform: uppercase; margin-bottom: 4px; }
+.case-num-col h6 { font-family: var(--font-m); font-size: 10px; text-transform: uppercase; margin-bottom: 3px; }
 .case-num-col.before h6 { color: var(--ruby); }
 .case-num-col.after h6 { color: var(--emerald); }
-.case-rating { font-size: 14px; font-weight: 700; margin-bottom: 2px; }
-.case-sub { font-size: 11.5px; color: var(--bone-dim); }
+.case-rating { font-size: 13.5px; font-weight: 700; margin-bottom: 2px; }
+.case-sub { font-size: 11px; color: var(--bone-dim); }
 
 .case-result-bar {
   display: flex;
@@ -3041,7 +3092,7 @@ img, svg { display: block; max-width: 100%; }
   align-items: center;
   font-size: 11.5px;
   border-top: 1px solid var(--line);
-  padding-top: 10px;
+  padding-top: 8px;
 }
 
 .case-result-bar span { color: var(--emerald); font-weight: 600; }
@@ -4040,7 +4091,23 @@ select.form-control option {
     padding: 22px 18px;
   }
   .case-card {
-    padding: 20px 18px;
+    padding: 0 !important;
+  }
+  .case-body {
+    padding: 12px 14px 14px 14px;
+  }
+  .case-title {
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+  .case-numbers {
+    padding: 8px 10px;
+    margin-bottom: 8px;
+    gap: 8px;
+  }
+  .case-result-bar {
+    padding-top: 8px;
+    font-size: 11px;
   }
   .roi-card {
     padding: 22px 18px;
@@ -4104,6 +4171,56 @@ select.form-control option {
     right: 16px;
     padding: 8px 13px;
     font-size: 11.5px;
+  }
+
+  /* Single-Box Newspaper Carousel (100% Fit, Zero Cutting) */
+  .newspaper-feature-section {
+    padding: 16px 14px;
+    margin-top: 24px;
+  }
+  .newspaper-header {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  .newspaper-nav-controls {
+    display: flex;
+    gap: 8px;
+  }
+  .news-nav-btn {
+    width: 38px;
+    height: 38px;
+  }
+  .newspaper-scroll-container {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    overscroll-behavior-x: contain;
+    padding: 4px 0 10px 0;
+    margin: 0;
+  }
+  .newspaper-cards-track {
+    display: flex;
+    gap: 14px;
+    width: max-content;
+  }
+  .newspaper-card {
+    flex: 0 0 100%;
+    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
+    box-sizing: border-box;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+  .newspaper-card-img-wrap {
+    aspect-ratio: 16 / 10;
+    min-height: 190px;
   }
 }
 
@@ -4173,7 +4290,8 @@ select.form-control option {
     max-height: 30px;
   }
   .newspaper-card {
-    flex: 0 0 calc(100vw - 48px);
+    flex: 0 0 100% !important;
+    width: 100% !important;
   }
   .how-mindmap-wrap {
     padding: 16px 12px;
